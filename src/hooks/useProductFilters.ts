@@ -33,19 +33,34 @@ export const useProductFilters = (products: Product[]) => {
 
   const handleFilterChange = (
     filterType: FilterType,
-    value: string | number
+    value: string | number,
   ) => {
-    setActiveFilters((prev) => {
-      if (Array.isArray(prev[filterType])) {
-        const currentValues = prev[filterType] as string[];
-        const newValues = currentValues.includes(value as string)
-          ? currentValues.filter((v) => v !== value)
-          : [...currentValues, value as string];
-        return { ...prev, [filterType]: newValues };
-      } else {
-        const newValue = prev[filterType] === value ? null : value;
-        return { ...prev, [filterType]: newValue };
+    setActiveFilters((prevFilters) => {
+      const currentFilter = prevFilters[filterType];
+
+      // Category or Brand
+      if (Array.isArray(currentFilter)) {
+        const values = currentFilter as string[];
+        const isAlreadySelected = values.includes(value as string);
+
+        const updatedValues = isAlreadySelected
+          ? values.filter((v) => v !== value) // remove value
+          : [...values, value as string]; // add value
+
+        return {
+          ...prevFilters,
+          [filterType]: updatedValues,
+        };
       }
+
+      // Price Range or Rating
+      const isSameValue = currentFilter === value;
+      const updatedValue = isSameValue ? null : value;
+
+      return {
+        ...prevFilters,
+        [filterType]: updatedValue,
+      };
     });
   };
 
@@ -64,14 +79,14 @@ export const useProductFilters = (products: Product[]) => {
     // Apply category filter
     if (activeFilters[FilterType.CATEGORY].length > 0) {
       result = result.filter((p) =>
-        activeFilters[FilterType.CATEGORY].includes(p.category)
+        activeFilters[FilterType.CATEGORY].includes(p.category),
       );
     }
 
     // Apply brand filter
     if (activeFilters[FilterType.BRAND].length > 0) {
       result = result.filter((p) =>
-        activeFilters[FilterType.BRAND].includes(p.brand)
+        activeFilters[FilterType.BRAND].includes(p.brand),
       );
     }
 
@@ -90,7 +105,7 @@ export const useProductFilters = (products: Product[]) => {
     // Apply rating filter
     if (activeFilters[FilterType.RATING] !== null) {
       result = result.filter(
-        (p) => p.rating >= (activeFilters[FilterType.RATING] as number)
+        (p) => p.rating >= (activeFilters[FilterType.RATING] as number),
       );
     }
 
