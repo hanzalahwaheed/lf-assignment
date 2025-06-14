@@ -1,5 +1,5 @@
-"use client";
 import axios from "axios";
+import ProductBrowser from "@/components/product-browser";
 
 const fetchProducts = async () => {
   try {
@@ -16,15 +16,9 @@ const fetchProducts = async () => {
   }
 };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return (
-    <div>
-      <pre>{data}</pre>
-    </div>
-  );
+const Home = async () => {
+  const products = await fetchProducts();
+  return <ProductBrowser products={products} />;
 };
 
 export default Home;
