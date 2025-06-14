@@ -1,7 +1,27 @@
 import SortIcon from "@/components/ui/sort-icon";
 
-const TableLayout = ({ data, onSort, sortConfig }) => {
-  const headers = [
+interface TableLayoutProps {
+  data: Array<{
+    id: number;
+    title: string;
+    category: string;
+    brand: string;
+    price: number;
+    rating: number;
+    stock: number;
+    [key: string]: any;
+  }>;
+  onSort: (key: string) => void;
+  sortConfig: { key: string; direction: "ascending" | "descending" };
+}
+
+type HeaderType = {
+  key: string;
+  label: string;
+};
+
+const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
+  const headers: HeaderType[] = [
     { key: "title", label: "Product Name" },
     { key: "category", label: "Category" },
     { key: "brand", label: "Brand" },
