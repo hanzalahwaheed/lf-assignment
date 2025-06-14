@@ -1,6 +1,6 @@
 "use client";
-import React, { useMemo, useState, useEffect, act } from "react";
-import { ListIcon, LayoutGrid, Filter } from "lucide-react";
+import React, { useMemo, useState, useEffect } from "react";
+import { ListIcon, LayoutGrid, Search } from "lucide-react";
 import TableLayout from "@/components/table-layout";
 import GridLayout from "@/components/grid-layout";
 import { FilterSection } from "@/components/filter-section";
@@ -45,8 +45,8 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
         searchableFields.some((key) =>
           String(p[key] ?? "")
             .toLowerCase()
-            .includes(lowercasedTerm)
-        )
+            .includes(lowercasedTerm),
+        ),
       );
     }
     return sortItems(result);
@@ -83,7 +83,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
 
   const handleFilterBadgeRemove = (
     filterType: FilterType,
-    value: string | number
+    value: string | number,
   ) => {
     handleFilterChange(filterType, value);
   };
@@ -95,28 +95,31 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
     (activeFilters.rating ? 1 : 0);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
       <style>{`.animate-fade-in { animation: fade-in 0.3s ease-out; } details > summary { list-style: none; } details > summary::-webkit-details-marker { display: none; }`}</style>
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <header className="mb-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+          <h1 className="mb-2 text-4xl font-bold text-slate-900 md:text-5xl">
             Product Catalog
           </h1>
         </header>
-        <div className="flex flex-col lg:flex-row gap-8">
-          <main className="flex-1 min-w-0">
-            <div className="p-4 mb-6 bg-white rounded-lg shadow-sm border border-slate-200 flex flex-col sm:flex-row items-center gap-4">
-              <input
-                type="text"
-                placeholder="🔍 Search products..."
-                value={searchTerm}
-                onChange={handleSearch}
-                className="w-full sm:flex-1 px-4 py-2 bg-white border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 transition"
-              />
-              <div className="flex items-center bg-slate-100 p-1 rounded-md">
+        <div className="flex flex-col gap-8 lg:flex-row">
+          <main className="min-w-0 flex-1">
+            <div className="mb-6 flex flex-col items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:flex-row">
+              <div className="flex w-full gap-2 rounded-md border border-slate-300 bg-white px-4 py-2">
+                <Search className="m-auto h-3.5 w-3.5" />
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchTerm}
+                  onChange={handleSearch}
+                  className="w-full text-sm transition focus:ring-2 focus:ring-slate-900 focus:outline-none sm:flex-1"
+                />
+              </div>
+              <div className="flex items-center rounded-md bg-slate-100 p-1">
                 <button
                   onClick={() => handleViewModeChange("grid")}
-                  className={`p-2 rounded ${
+                  className={`rounded p-2 ${
                     viewMode === "grid"
                       ? "bg-white text-slate-900 shadow-sm"
                       : "text-slate-500 hover:bg-slate-200"
@@ -126,7 +129,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 </button>
                 <button
                   onClick={() => handleViewModeChange("table")}
-                  className={`p-2 rounded ${
+                  className={`rounded p-2 ${
                     viewMode === "table"
                       ? "bg-white text-slate-900 shadow-sm"
                       : "text-slate-500 hover:bg-slate-200"
@@ -137,8 +140,8 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               </div>
             </div>
             {totalActiveFilters > 0 && (
-              <div className="p-4 mb-6 bg-white rounded-lg shadow-sm border border-slate-200 animate-fade-in">
-                <div className="flex justify-between items-center mb-2">
+              <div className="animate-fade-in mb-6 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="mb-2 flex items-center justify-between">
                   <h4 className="text-sm font-semibold">
                     Active Filters ({totalActiveFilters})
                   </h4>
@@ -180,7 +183,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                         value={activeFilters.priceRange}
                         label={
                           filterOptions.priceRange.find(
-                            (o) => o.key === activeFilters.priceRange
+                            (o) => o.key === activeFilters.priceRange,
                           )?.label
                         }
                         onRemove={handleFilterBadgeRemove}
@@ -194,7 +197,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                       value={activeFilters.rating}
                       label={
                         filterOptions.rating.find(
-                          (o) => o.key === activeFilters.rating
+                          (o) => o.key === activeFilters.rating,
                         )?.label
                       }
                       onRemove={handleFilterBadgeRemove}
@@ -214,7 +217,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 />
               )
             ) : (
-              <div className="text-center py-16 bg-white rounded-lg shadow-sm border border-slate-200">
+              <div className="rounded-lg border border-slate-200 bg-white py-16 text-center shadow-sm">
                 <h3 className="text-xl font-semibold text-slate-800">
                   No Products Found
                 </h3>
@@ -223,11 +226,11 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 </p>
               </div>
             )}
-            <div className="flex items-center justify-between mt-8 text-sm text-slate-600">
+            <div className="mt-8 flex items-center justify-between text-sm text-slate-600">
               <button
                 onClick={goToPreviousPage}
                 disabled={currentPage === 1}
-                className="px-4 py-2 bg-white border border-slate-300 rounded-md font-semibold hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                className="rounded-md border border-slate-300 bg-white px-4 py-2 font-semibold transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Previous
               </button>
@@ -239,15 +242,15 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 disabled={
                   currentPage === totalPages || currentData.length === 0
                 }
-                className="px-4 py-2 bg-white border border-slate-300 rounded-md font-semibold hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                className="rounded-md border border-slate-300 bg-white px-4 py-2 font-semibold transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Next
               </button>
             </div>
           </main>
-          <aside className="w-full lg:w-64 xl:w-72 flex-shrink-0">
-            <div className="p-4 bg-white rounded-lg shadow-sm border border-slate-200 sticky top-8">
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">
+          <aside className="w-full flex-shrink-0 lg:w-64 xl:w-72">
+            <div className="sticky top-8 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+              <h3 className="mb-4 text-lg font-semibold text-slate-900">
                 Filters
               </h3>
               <FilterSection

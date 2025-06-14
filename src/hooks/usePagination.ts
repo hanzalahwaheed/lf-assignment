@@ -53,12 +53,12 @@ export function usePagination<T>({
       setCurrentPage((prev) => {
         const pageNumber = Math.max(
           1,
-          Math.min(page, Math.max(1, Math.ceil(items.length / itemsPerPage)))
+          Math.min(page, Math.max(1, Math.ceil(items.length / itemsPerPage))),
         );
         return pageNumber !== prev ? pageNumber : prev;
       });
     },
-    [items.length, itemsPerPage]
+    [items.length, itemsPerPage],
   );
 
   return {

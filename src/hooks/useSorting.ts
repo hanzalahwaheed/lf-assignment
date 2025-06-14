@@ -57,7 +57,7 @@ export function useSorting<T>(initialSortConfig: SortConfig<T>) {
         return 0;
       });
     },
-    [sortConfig]
+    [sortConfig],
   );
 
   return {

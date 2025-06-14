@@ -14,30 +14,30 @@ interface GridLayoutProps {
 }
 
 const GridLayout = ({ data }: GridLayoutProps) => (
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 animate-fade-in">
+  <div className="animate-fade-in grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
     {data.map((product) => (
       <div
         key={product.id}
-        className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+        className="flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
       >
         <div className="h-48 overflow-hidden">
           <Image
             src={product.thumbnail}
             alt={product.title}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
             width={500}
             height={500}
           />
         </div>
-        <div className="p-4 flex flex-col flex-grow">
-          <p className="text-xs text-slate-500 font-semibold uppercase">
+        <div className="flex flex-grow flex-col p-4">
+          <p className="text-xs font-semibold text-slate-500 uppercase">
             {product.category}
           </p>
-          <h3 className="text-md font-bold text-slate-800 truncate mt-1">
+          <h3 className="text-md mt-1 truncate font-bold text-slate-800">
             {product.title}
           </h3>
-          <p className="text-sm text-slate-500 flex-grow">{product.brand}</p>
-          <div className="flex justify-between items-center mt-4">
+          <p className="flex-grow text-sm text-slate-500">{product.brand}</p>
+          <div className="mt-4 flex items-center justify-between">
             <p className="text-lg font-bold text-slate-900">
               ${product.price.toFixed(2)}
             </p>

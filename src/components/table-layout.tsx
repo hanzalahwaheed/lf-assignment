@@ -32,17 +32,17 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
   ];
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-x-auto animate-fade-in">
+    <div className="animate-fade-in overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
       <table className="w-full text-sm">
-        <thead className="bg-slate-50 border-b border-slate-200">
+        <thead className="border-b border-slate-200 bg-slate-50">
           <tr>
             {headers.map(({ key, label }) => (
               <th
                 key={key}
-                className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider"
+                className="px-6 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase"
               >
                 <div
-                  className="flex items-center cursor-pointer select-none"
+                  className="flex cursor-pointer items-center select-none"
                   onClick={() => onSort(key)}
                 >
                   {label}
@@ -60,20 +60,20 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
           {data.map((product) => (
             <tr
               key={product.id}
-              className="hover:bg-slate-50 transition-colors"
+              className="transition-colors hover:bg-slate-50"
             >
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="font-medium text-slate-900">
                   {product.title}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap capitalize text-slate-600">
+              <td className="px-6 py-4 whitespace-nowrap text-slate-600 capitalize">
                 {product.category}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-slate-600">
                 {product.brand}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap font-semibold text-slate-700">
+              <td className="px-6 py-4 font-semibold whitespace-nowrap text-slate-700">
                 ${product.price.toFixed(2)}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">

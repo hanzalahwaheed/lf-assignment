@@ -4,7 +4,7 @@ import ProductBrowser from "@/components/product-browser";
 const fetchProducts = async () => {
   try {
     const response = await axios.get(
-      "https://dummyjson.com/products?limit=100"
+      "https://dummyjson.com/products?limit=100",
     );
     if (!response.data)
       throw new Error(`HTTP error. Status: ${response.status}`);

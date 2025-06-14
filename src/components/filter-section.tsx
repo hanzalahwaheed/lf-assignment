@@ -29,14 +29,14 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
 
   return (
     <details
-      className="border-b border-slate-200 last:border-b-0 py-4 group"
+      className="group border-b border-slate-200 py-4 last:border-b-0"
       open
     >
-      <summary className="font-semibold text-slate-800 cursor-pointer flex justify-between items-center">
+      <summary className="flex cursor-pointer items-center justify-between font-semibold text-slate-800">
         {title}
-        <ChevronDown className="h-5 w-5 transition-transform transform group-open:rotate-180" />
+        <ChevronDown className="h-5 w-5 transform transition-transform group-open:rotate-180" />
       </summary>
-      <div className="space-y-2 max-h-60 overflow-y-auto pr-2 pt-2">
+      <div className="max-h-60 space-y-2 overflow-y-auto pt-2 pr-2">
         {options &&
           options.map((option, index) => {
             if (!option) return null;
@@ -61,8 +61,8 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
                   onChange={() => handleChange(value)}
                   className={`h-4 w-4 rounded ${
                     type === "checkbox"
-                      ? "text-indigo-600 border-gray-300"
-                      : "text-indigo-600 border-gray-300"
+                      ? "border-gray-300 text-indigo-600"
+                      : "border-gray-300 text-indigo-600"
                   } focus:ring-indigo-500`}
                 />
                 <label
