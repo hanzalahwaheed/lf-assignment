@@ -67,9 +67,9 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
                 />
                 <label
                   htmlFor={`filter-${title}-${value}`}
-                  className="ml-3 text-sm text-gray-700"
+                  className="ml-3 text-sm text-gray-700 capitalize"
                 >
-                  {label}
+                  {type === "checkbox" ? label.replace("-", " ") : label}
                 </label>
               </div>
             );

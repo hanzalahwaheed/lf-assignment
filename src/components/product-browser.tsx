@@ -98,11 +98,6 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
       <style>{`.animate-fade-in { animation: fade-in 0.3s ease-out; } details > summary { list-style: none; } details > summary::-webkit-details-marker { display: none; }`}</style>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-        <header className="mb-8 text-center">
-          <h1 className="mb-2 text-4xl font-bold text-slate-900 md:text-5xl">
-            Product Catalog
-          </h1>
-        </header>
         <div className="flex flex-col gap-8 lg:flex-row">
           <main className="min-w-0 flex-1">
             <div className="mb-6 flex flex-col items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:flex-row">
@@ -113,7 +108,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   placeholder="Search products..."
                   value={searchTerm}
                   onChange={handleSearch}
-                  className="w-full text-sm transition focus:ring-2 focus:ring-slate-900 focus:outline-none sm:flex-1"
+                  className="w-full text-sm transition focus:ring-0 focus:outline-none sm:flex-1"
                 />
               </div>
               <div className="flex items-center rounded-md bg-slate-100 p-1">
@@ -158,7 +153,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   {activeFilters.category.map((v) => (
                     <FilterBadge
                       key={v}
-                      type="category"
+                      type={FilterType.CATEGORY}
                       value={v}
                       onRemove={handleFilterBadgeRemove}
                     />
@@ -169,7 +164,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   {activeFilters.brand.map((v) => (
                     <FilterBadge
                       key={v}
-                      type="brand"
+                      type={FilterType.BRAND}
                       value={v}
                       onRemove={handleFilterBadgeRemove}
                     />
@@ -179,7 +174,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                     <>
                       <div>Price Range:</div>
                       <FilterBadge
-                        type="priceRange"
+                        type={FilterType.PRICE_RANGE}
                         value={activeFilters.priceRange}
                         label={
                           filterOptions.priceRange.find(
@@ -193,7 +188,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   {activeFilters.rating && <div>Rating:</div>}
                   {activeFilters.rating && (
                     <FilterBadge
-                      type="rating"
+                      type={FilterType.RATING}
                       value={activeFilters.rating}
                       label={
                         filterOptions.rating.find(

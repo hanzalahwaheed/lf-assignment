@@ -1,11 +1,12 @@
 import React from "react";
+import { FilterType } from "@/types/filters";
 import { X } from "lucide-react";
 
 interface FilterBadgeProps {
-  type: string;
+  type: FilterType;
   value: any;
   label?: string;
-  onRemove: (type: string, value: any) => void;
+  onRemove: (type: FilterType, value: any) => void;
 }
 
 export const FilterBadge: React.FC<FilterBadgeProps> = ({

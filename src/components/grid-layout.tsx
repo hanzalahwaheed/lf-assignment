@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { Star } from "lucide-react";
 
 interface GridLayoutProps {
-  data: Array<{
+  data: {
     id: number;
     title: string;
     category: string;
@@ -9,8 +10,7 @@ interface GridLayoutProps {
     price: number;
     rating: number;
     thumbnail: string;
-    [key: string]: any;
-  }>;
+  }[];
 }
 
 const GridLayout = ({ data }: GridLayoutProps) => (
@@ -42,7 +42,9 @@ const GridLayout = ({ data }: GridLayoutProps) => (
               ${product.price.toFixed(2)}
             </p>
             <div className="flex items-center text-sm font-semibold text-amber-500">
-              <span>⭐</span>
+              <span>
+                <Star className="h-3.5 w-3.5" />
+              </span>
               <span className="ml-1">{product.rating.toFixed(1)}</span>
             </div>
           </div>

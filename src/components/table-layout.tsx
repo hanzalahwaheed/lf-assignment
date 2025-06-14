@@ -1,8 +1,9 @@
 import SortIcon from "@/components/ui/sort-icon";
+import { Product } from "@/types/products";
 import { Star } from "lucide-react";
 
 interface TableLayoutProps {
-  data: Array<{
+  data: {
     id: number;
     title: string;
     category: string;
@@ -11,8 +12,8 @@ interface TableLayoutProps {
     rating: number;
     stock: number;
     [key: string]: any;
-  }>;
-  onSort: (key: string) => void;
+  }[];
+  onSort: (key: keyof Product) => void;
   sortConfig: { key: string; direction: "ascending" | "descending" };
 }
 
@@ -43,7 +44,7 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
               >
                 <div
                   className="flex cursor-pointer items-center select-none"
-                  onClick={() => onSort(key)}
+                  onClick={() => onSort(key as keyof Product)}
                 >
                   {label}
                   <SortIcon
@@ -68,7 +69,7 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-slate-600 capitalize">
-                {product.category}
+                {product.category.replace("-", " ")}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-slate-600">
                 {product.brand}
