@@ -1,4 +1,5 @@
 import SortIcon from "@/components/ui/sort-icon";
+import { Star } from "lucide-react";
 
 interface TableLayoutProps {
   data: Array<{
@@ -76,8 +77,8 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
                 ${product.price.toFixed(2)}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <span className="flex items-center">
-                  ⭐ {product.rating.toFixed(1)}
+                <span className="flex items-center gap-2">
+                  <Star className="h-3.5 w-3.5" /> {product.rating.toFixed(1)}
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">{product.stock}</td>

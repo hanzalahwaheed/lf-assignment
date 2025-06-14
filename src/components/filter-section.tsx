@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import React from "react";
 
 interface FilterOption {
@@ -33,20 +34,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
     >
       <summary className="font-semibold text-slate-800 cursor-pointer flex justify-between items-center">
         {title}
-        <svg
-          className="h-5 w-5 transition-transform transform group-open:rotate-180"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
+        <ChevronDown className="h-5 w-5 transition-transform transform group-open:rotate-180" />
       </summary>
       <div className="space-y-2 max-h-60 overflow-y-auto pr-2 pt-2">
         {options &&
