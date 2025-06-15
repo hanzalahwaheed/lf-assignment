@@ -1,9 +1,9 @@
-import { InputHTMLAttributes, useEffect, useState, useCallback } from 'react';
-import { debounce } from 'lodash';
+import { InputHTMLAttributes, useEffect, useState, useCallback } from "react";
+import { debounce } from "lodash";
 
 type DebouncedInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'onChange' | 'value'
+  "onChange" | "value"
 > & {
   value: string;
   onChange: (value: string) => void;
@@ -14,7 +14,7 @@ export const DebouncedInput = ({
   value: propValue,
   onChange,
   debounceTime = 300,
-  className = '',
+  className = "",
   ...props
 }: DebouncedInputProps) => {
   const [inputValue, setInputValue] = useState(propValue);
@@ -29,7 +29,7 @@ export const DebouncedInput = ({
     debounce((value: string) => {
       onChange(value);
     }, debounceTime),
-    [onChange, debounceTime]
+    [onChange, debounceTime],
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +50,7 @@ export const DebouncedInput = ({
       {...props}
       value={inputValue}
       onChange={handleChange}
-      className={`rounded-md border border-slate-300 px-3 py-2 text-sm transition focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${className}`}
+      className={`rounded-md border border-slate-300 px-3 py-2 text-sm transition focus:ring-0 focus:outline-none ${className}`}
     />
   );
 };

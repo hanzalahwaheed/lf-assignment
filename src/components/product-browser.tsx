@@ -98,17 +98,17 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
       <style>{`.animate-fade-in { animation: fade-in 0.3s ease-out; } details > summary { list-style: none; } details > summary::-webkit-details-marker { display: none; }`}</style>
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-8 lg:flex-row">
           <main className="min-w-0 flex-1">
             <div className="mb-6 flex flex-col items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:flex-row">
-              <div className="flex w-full items-center gap-2 rounded-md border border-slate-300 bg-white px-4 py-2">
+              <div className="flex w-full items-center gap-2 rounded-md border border-slate-300 bg-white px-4">
                 <Search className="h-3.5 w-3.5 text-slate-400" />
                 <DebouncedInput
                   type="text"
                   value={searchTerm}
                   onChange={handleSearch}
-                  placeholder="Search products..."
+                  placeholder="Search products by category, brand or product. "
                   className="w-full border-none bg-transparent text-sm focus:ring-0 focus:outline-none"
                 />
               </div>
@@ -143,7 +143,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   </h4>
                   <button
                     onClick={handleClearAllFilters}
-                    className="text-sm font-semibold text-blue-600 hover:underline"
+                    className="text-sm font-semibold hover:underline"
                   >
                     Clear all
                   </button>
