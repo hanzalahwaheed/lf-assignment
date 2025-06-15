@@ -1,6 +1,7 @@
 "use client";
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { ListIcon, LayoutGrid, Search } from "lucide-react";
+import { DebouncedInput } from "@/components/ui/debounced-input";
 import TableLayout from "@/components/table-layout";
 import GridLayout from "@/components/grid-layout";
 import { FilterSection } from "@/components/filter-section";
@@ -77,8 +78,8 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
     setViewMode(mode);
   };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
   };
 
   const handleFilterBadgeRemove = (
@@ -101,14 +102,14 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
         <div className="flex flex-col gap-8 lg:flex-row">
           <main className="min-w-0 flex-1">
             <div className="mb-6 flex flex-col items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:flex-row">
-              <div className="flex w-full gap-2 rounded-md border border-slate-300 bg-white px-4 py-2">
-                <Search className="m-auto h-3.5 w-3.5" />
-                <input
+              <div className="flex w-full items-center gap-2 rounded-md border border-slate-300 bg-white px-4 py-2">
+                <Search className="h-3.5 w-3.5 text-slate-400" />
+                <DebouncedInput
                   type="text"
-                  placeholder="Search products..."
                   value={searchTerm}
                   onChange={handleSearch}
-                  className="w-full text-sm transition focus:ring-0 focus:outline-none sm:flex-1"
+                  placeholder="Search products..."
+                  className="w-full border-none bg-transparent text-sm focus:ring-0 focus:outline-none"
                 />
               </div>
               <div className="flex items-center rounded-md bg-slate-100 p-1">
