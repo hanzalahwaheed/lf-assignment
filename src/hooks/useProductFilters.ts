@@ -76,37 +76,25 @@ export const useProductFilters = (products: Product[]) => {
   const filteredProducts = useMemo(() => {
     let result = [...products];
 
-    // Apply category filter
-    if (activeFilters[FilterType.CATEGORY].length > 0) {
-      result = result.filter((p) =>
-        activeFilters[FilterType.CATEGORY].includes(p.category),
-      );
-    }
+    const categories = activeFilters[FilterType.CATEGORY];
+    if (categories.length)
+      result = result.filter((p) => categories.includes(p.category));
 
-    // Apply brand filter
-    if (activeFilters[FilterType.BRAND].length > 0) {
-      result = result.filter((p) =>
-        activeFilters[FilterType.BRAND].includes(p.brand),
-      );
-    }
+    const brands = activeFilters[FilterType.BRAND];
+    if (brands.length) result = result.filter((p) => brands.includes(p.brand));
 
-    // Apply price range filter
-    if (activeFilters[FilterType.PRICE_RANGE]) {
-      const [min, max] = (activeFilters[FilterType.PRICE_RANGE] as string)
-        .split("-")
-        .map(Number);
-
+    const priceRange = activeFilters[FilterType.PRICE_RANGE];
+    if (priceRange) {
+      const [min, max] = (priceRange as string).split("-").map(Number);
       result = result.filter((p) => {
         if (max) return p.price >= min && p.price <= max;
-        return p.price >= min;
+        return p.price >= min; // 1000+ scenario
       });
     }
 
-    // Apply rating filter
-    if (activeFilters[FilterType.RATING] !== null) {
-      result = result.filter(
-        (p) => p.rating >= (activeFilters[FilterType.RATING] as number),
-      );
+    const rating = activeFilters[FilterType.RATING] as number;
+    if (rating !== null) {
+      result = result.filter((p) => p.rating >= rating);
     }
 
     return result;
