@@ -97,8 +97,8 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
         <div className="flex flex-col gap-8 lg:flex-row">
           <main className="min-w-0 flex-1">
             <div className="mb-6 flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm sm:flex-row">
-              <div className="flex w-full items-center gap-2 rounded-md border border-neutral-300 bg-white px-4">
-                <Search className="h-3.5 w-3.5 text-neutral-400" />
+              <div className="flex w-full items-center gap-2 rounded-md border border-neutral-300 bg-white">
+                <Search className="ml-2 h-3.5 w-3.5 text-neutral-400" />
                 <DebouncedInput
                   type="text"
                   value={searchTerm}
@@ -203,8 +203,8 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
             </div>
           </main>
           <aside className="w-full flex-shrink-0 lg:w-64 xl:w-72">
-            <div className="sticky top-8 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm">
-              <h3 className="mb-4 text-lg font-semibold text-neutral-900">
+            <div className="sticky top-8 rounded-lg border border-neutral-200 bg-white px-4 pt-4 shadow-sm">
+              <h3 className="text-lg font-semibold text-neutral-900">
                 Filters
               </h3>
               <FilterSection

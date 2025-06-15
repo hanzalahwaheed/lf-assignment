@@ -1,5 +1,11 @@
-import { InputHTMLAttributes, useEffect, useState, useCallback } from "react";
+import React, {
+  InputHTMLAttributes,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import { debounce } from "lodash";
+import { X } from "lucide-react";
 
 type DebouncedInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -38,6 +44,11 @@ export const DebouncedInput = ({
     debouncedOnChange(value);
   };
 
+  const resetValue = () => {
+    setInputValue("");
+    onChange("");
+  };
+
   // Cleanup debounce on unmount
   useEffect(() => {
     return () => {
@@ -46,12 +57,17 @@ export const DebouncedInput = ({
   }, [debouncedOnChange]);
 
   return (
-    <input
-      {...props}
-      value={inputValue}
-      onChange={handleChange}
-      className={`rounded-md border border-neutral-300 px-3 py-2 text-sm transition focus:ring-0 focus:outline-none ${className}`}
-    />
+    <div className="flex w-full gap-1">
+      <input
+        {...props}
+        value={inputValue}
+        onChange={handleChange}
+        className={`px-3 py-1.5 text-sm transition focus:ring-0 focus:outline-none ${className}`}
+      />
+      <button onClick={resetValue}>
+        <X className="mr-2 h-3 w-3 cursor-pointer" />
+      </button>
+    </div>
   );
 };
 

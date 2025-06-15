@@ -52,7 +52,7 @@ export function ActiveFilters({
         ))}
 
         {activeFilters.brand.length > 0 && (
-          <span className="ml-2 text-neutral-500">Brand:</span>
+          <span className="text-neutral-500">Brand:</span>
         )}
         {activeFilters.brand.map((v) => (
           <FilterBadge
@@ -64,7 +64,7 @@ export function ActiveFilters({
         ))}
 
         {activeFilters.priceRange && (
-          <span className="ml-2 text-neutral-500">Price:</span>
+          <span className="text-neutral-500">Price:</span>
         )}
         {activeFilters.priceRange && (
           <FilterBadge
@@ -75,7 +75,7 @@ export function ActiveFilters({
         )}
 
         {activeFilters.rating && (
-          <span className="ml-2 text-neutral-500">Rating:</span>
+          <span className="text-neutral-500">Rating:</span>
         )}
         {activeFilters.rating && (
           <FilterBadge

@@ -4,9 +4,9 @@ import { X } from "lucide-react";
 
 interface FilterBadgeProps {
   type: FilterType;
-  value: any;
+  value: string | number;
   label?: string;
-  onRemove: (type: FilterType, value: any) => void;
+  onRemove: (type: FilterType, value: string | number) => void;
 }
 
 export const FilterBadge: React.FC<FilterBadgeProps> = ({

@@ -51,15 +51,15 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
       </summary>
       <div className="space-y-2">
         {(title === "Category" || title === "Brand") && (
-          <div className="sticky top-0 z-10 bg-white pb-2">
-            <div className="relative">
+          <div className="sticky top-0 z-10 my-2 bg-white">
+            <div className="relative rounded-md border border-neutral-300">
               <Search className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
               <DebouncedInput
                 type="text"
                 value={searchTerm}
                 onChange={setSearchTerm}
                 placeholder={`Search ${title.toLowerCase()}...`}
-                className="w-full rounded-md border border-neutral-300 py-1.5 pr-3 pl-9 text-sm focus:ring-0 focus:outline-none"
+                className="w-full py-1.5 pr-3 pl-9 text-sm focus:ring-0 focus:outline-none"
               />
             </div>
           </div>
