@@ -11,6 +11,7 @@ interface TableLayoutProps {
     price: number;
     rating: number;
     stock: number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   }[];
   onSort: (key: keyof Product) => void;
