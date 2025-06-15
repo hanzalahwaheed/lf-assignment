@@ -134,7 +134,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 <div className="flex items-center rounded-md bg-neutral-100 p-1">
                   <button
                     onClick={() => handleViewModeChange("table")}
-                    className={`rounded p-2 ${
+                    className={`cursor-pointer rounded p-2 ${
                       viewMode === "table"
                         ? "bg-white text-neutral-900 shadow-sm"
                         : "text-neutral-500 hover:bg-neutral-200"
@@ -144,7 +144,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   </button>
                   <button
                     onClick={() => handleViewModeChange("grid")}
-                    className={`rounded p-2 ${
+                    className={`cursor-pointer rounded p-2 ${
                       viewMode === "grid"
                         ? "bg-white text-neutral-900 shadow-sm"
                         : "text-neutral-500 hover:bg-neutral-200"
@@ -184,7 +184,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               <button
                 onClick={goToPreviousPage}
                 disabled={currentPage === 1}
-                className="rounded-md border border-neutral-300 bg-white px-4 py-2 font-semibold transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+                className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-semibold transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Previous
               </button>
@@ -196,7 +196,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 disabled={
                   currentPage === totalPages || currentData.length === 0
                 }
-                className="rounded-md border border-neutral-300 bg-white px-4 py-2 font-semibold transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+                className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-semibold transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Next
               </button>

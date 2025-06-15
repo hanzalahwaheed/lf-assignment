@@ -27,13 +27,13 @@ export function ExportAsCSV<T>({
       ...data.map((item) =>
         getRowData(item)
           .map((cell) => {
-            if (typeof cell === 'string') {
+            if (typeof cell === "string") {
               // Escape quotes and wrap in quotes
               return `"${cell.replace(/"/g, '""')}"`;
             }
             return cell;
           })
-          .join(",")
+          .join(","),
       ),
     ].join("\n");
 
@@ -42,7 +42,10 @@ export function ExportAsCSV<T>({
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.setAttribute("href", url);
-    link.setAttribute("download", `${filename}-${new Date().toISOString().split("T")[0]}.csv`);
+    link.setAttribute(
+      "download",
+      `${filename}-${new Date().toISOString().split("T")[0]}.csv`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -52,7 +55,7 @@ export function ExportAsCSV<T>({
     <button
       onClick={handleExportCSV}
       disabled={disabled || data.length === 0}
-      className={`flex items-center gap-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`flex cursor-pointer items-center gap-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       title="Export to CSV"
     >
       <Download className="h-4 w-4" />

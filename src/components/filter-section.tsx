@@ -91,7 +91,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
                     name={type === "radio" ? title : undefined}
                     checked={!!isSelected}
                     onChange={() => handleChange(value)}
-                    className={`h-4 w-4 rounded border-gray-300`}
+                    className={`h-4 w-4 cursor-pointer rounded border-gray-300`}
                   />
                   <label
                     htmlFor={`filter-${title}-${value}`}
