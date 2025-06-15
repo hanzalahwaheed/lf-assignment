@@ -6,7 +6,7 @@ import { DebouncedInput } from "@/components/ui/debounced-input";
 import TableLayout from "@/components/table-layout";
 import GridLayout from "@/components/grid-layout";
 import { FilterSection } from "@/components/filter-section";
-import FilterBadge from "@/components/filter-badge";
+import { ActiveFilters } from "@/components/active-filters";
 import { useProductFilters } from "@/hooks/useProductFilters";
 import { usePagination } from "@/hooks/usePagination";
 import { useSorting } from "@/hooks/useSorting";
@@ -90,12 +90,6 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
     handleFilterChange(filterType, value);
   };
 
-  const totalActiveFilters =
-    activeFilters.category.length +
-    activeFilters.brand.length +
-    (activeFilters.priceRange ? 1 : 0) +
-    (activeFilters.rating ? 1 : 0);
-
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
       <style>{`.animate-fade-in { animation: fade-in 0.3s ease-out; } details > summary { list-style: none; } details > summary::-webkit-details-marker { display: none; }`}</style>
@@ -161,73 +155,11 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 </div>
               </div>
             </div>
-            {totalActiveFilters > 0 && (
-              <div className="animate-fade-in mb-6 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                <div className="mb-2 flex items-center justify-between">
-                  <h4 className="text-sm font-semibold">
-                    Active Filters ({totalActiveFilters})
-                  </h4>
-                  <button
-                    onClick={handleClearAllFilters}
-                    className="text-sm font-semibold hover:underline"
-                  >
-                    Clear all
-                  </button>
-                </div>
-                <div className="flex flex-wrap gap-2 text-sm">
-                  {activeFilters.category &&
-                    activeFilters.category.length != 0 && <div>Category:</div>}
-                  {activeFilters.category.map((v) => (
-                    <FilterBadge
-                      key={v}
-                      type={FilterType.CATEGORY}
-                      value={v}
-                      onRemove={handleFilterBadgeRemove}
-                    />
-                  ))}
-                  {activeFilters.brand && activeFilters.brand.length != 0 && (
-                    <div>Brand:</div>
-                  )}
-                  {activeFilters.brand.map((v) => (
-                    <FilterBadge
-                      key={v}
-                      type={FilterType.BRAND}
-                      value={v}
-                      onRemove={handleFilterBadgeRemove}
-                    />
-                  ))}
-
-                  {activeFilters.priceRange && (
-                    <>
-                      <div>Price Range:</div>
-                      <FilterBadge
-                        type={FilterType.PRICE_RANGE}
-                        value={activeFilters.priceRange}
-                        label={
-                          filterOptions.priceRange.find(
-                            (o) => o.key === activeFilters.priceRange,
-                          )?.label
-                        }
-                        onRemove={handleFilterBadgeRemove}
-                      />
-                    </>
-                  )}
-                  {activeFilters.rating && <div>Rating:</div>}
-                  {activeFilters.rating && (
-                    <FilterBadge
-                      type={FilterType.RATING}
-                      value={activeFilters.rating}
-                      label={
-                        filterOptions.rating.find(
-                          (o) => o.key === activeFilters.rating,
-                        )?.label
-                      }
-                      onRemove={handleFilterBadgeRemove}
-                    />
-                  )}
-                </div>
-              </div>
-            )}
+            <ActiveFilters
+              activeFilters={activeFilters}
+              onClearAll={handleClearAllFilters}
+              onFilterRemove={handleFilterBadgeRemove}
+            />
             {currentData.length > 0 ? (
               viewMode === "grid" ? (
                 <GridLayout data={currentData} />
