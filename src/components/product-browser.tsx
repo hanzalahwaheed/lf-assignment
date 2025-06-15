@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState, useEffect } from "react";
 import { ListIcon, LayoutGrid, Search } from "lucide-react";
+import { ExportAsCSV } from "./export-csv-button";
 import { DebouncedInput } from "@/components/ui/debounced-input";
 import TableLayout from "@/components/table-layout";
 import GridLayout from "@/components/grid-layout";
@@ -112,27 +113,52 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   className="w-full border-none bg-transparent text-sm focus:ring-0 focus:outline-none"
                 />
               </div>
-              <div className="flex items-center rounded-md bg-slate-100 p-1">
-                <button
-                  onClick={() => handleViewModeChange("grid")}
-                  className={`rounded p-2 ${
-                    viewMode === "grid"
-                      ? "bg-white text-slate-900 shadow-sm"
-                      : "text-slate-500 hover:bg-slate-200"
-                  }`}
-                >
-                  <LayoutGrid className="h-5 w-5" />
-                </button>
-                <button
-                  onClick={() => handleViewModeChange("table")}
-                  className={`rounded p-2 ${
-                    viewMode === "table"
-                      ? "bg-white text-slate-900 shadow-sm"
-                      : "text-slate-500 hover:bg-slate-200"
-                  }`}
-                >
-                  <ListIcon className="h-5 w-5" />
-                </button>
+              <div className="flex items-center gap-2">
+                <ExportAsCSV
+                  data={filteredAndSortedProducts}
+                  headers={[
+                    "Title",
+                    "Brand",
+                    "Category",
+                    "Price",
+                    "Rating",
+                    "Stock",
+                    "Description",
+                  ]}
+                  filename="products"
+                  getRowData={(product) => [
+                    product.title,
+                    product.brand,
+                    product.category,
+                    product.price,
+                    product.rating,
+                    product.stock,
+                    product.description,
+                  ]}
+                  disabled={filteredAndSortedProducts.length === 0}
+                />
+                <div className="flex items-center rounded-md bg-slate-100 p-1">
+                  <button
+                    onClick={() => handleViewModeChange("table")}
+                    className={`rounded p-2 ${
+                      viewMode === "table"
+                        ? "bg-white text-slate-900 shadow-sm"
+                        : "text-slate-500 hover:bg-slate-200"
+                    }`}
+                  >
+                    <ListIcon className="h-5 w-5" />
+                  </button>
+                  <button
+                    onClick={() => handleViewModeChange("grid")}
+                    className={`rounded p-2 ${
+                      viewMode === "grid"
+                        ? "bg-white text-slate-900 shadow-sm"
+                        : "text-slate-500 hover:bg-slate-200"
+                    }`}
+                  >
+                    <LayoutGrid className="h-5 w-5" />
+                  </button>
+                </div>
               </div>
             </div>
             {totalActiveFilters > 0 && (
