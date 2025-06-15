@@ -33,14 +33,14 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
   ];
 
   return (
-    <div className="animate-fade-in overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
+    <div className="animate-fade-in overflow-x-auto rounded-lg border border-neutral-200 bg-white shadow-sm">
       <table className="w-full text-sm">
-        <thead className="border-b border-slate-200 bg-slate-50">
+        <thead className="border-b border-neutral-200 bg-neutral-50">
           <tr>
             {headers.map(({ key, label }) => (
               <th
                 key={key}
-                className="px-6 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase"
+                className="px-6 py-3 text-left text-xs font-medium tracking-wider text-neutral-500 uppercase"
               >
                 <div
                   className="flex cursor-pointer items-center select-none"
@@ -57,24 +57,24 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-200">
+        <tbody className="divide-y divide-neutral-200">
           {data.map((product) => (
             <tr
               key={product.id}
-              className="transition-colors hover:bg-slate-50"
+              className="transition-colors hover:bg-neutral-50"
             >
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="font-medium text-slate-900">
+                <div className="font-medium text-neutral-900">
                   {product.title}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-slate-600 capitalize">
+              <td className="px-6 py-4 whitespace-nowrap text-neutral-600 capitalize">
                 {product.category.replace("-", " ")}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-slate-600">
+              <td className="px-6 py-4 whitespace-nowrap text-neutral-600">
                 {product.brand}
               </td>
-              <td className="px-6 py-4 font-semibold whitespace-nowrap text-slate-700">
+              <td className="px-6 py-4 font-semibold whitespace-nowrap text-neutral-700">
                 ${product.price.toFixed(2)}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">

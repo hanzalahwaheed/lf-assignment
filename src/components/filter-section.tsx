@@ -12,7 +12,7 @@ type FilterValue = string | number;
 interface FilterSectionProps {
   title: string;
   type: "checkbox" | "radio";
-  options: Array<FilterOption | FilterValue>;
+  options: (FilterOption | FilterValue)[];
   selected: FilterValue | FilterValue[] | null;
   onChange: (value: FilterValue) => void;
 }
@@ -42,10 +42,10 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
 
   return (
     <details
-      className="group border-b border-slate-200 py-4 last:border-b-0"
+      className="group border-b border-neutral-200 py-4 last:border-b-0"
       open
     >
-      <summary className="flex cursor-pointer items-center justify-between font-semibold text-slate-800">
+      <summary className="flex cursor-pointer items-center justify-between font-semibold text-neutral-800">
         {title}
         <ChevronDown className="h-5 w-5 transform transition-transform group-open:rotate-180" />
       </summary>
@@ -53,20 +53,20 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
         {(title === "Category" || title === "Brand") && (
           <div className="sticky top-0 z-10 bg-white pb-2">
             <div className="relative">
-              <Search className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
+              <Search className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
               <DebouncedInput
                 type="text"
                 value={searchTerm}
                 onChange={setSearchTerm}
                 placeholder={`Search ${title.toLowerCase()}...`}
-                className="w-full rounded-md border border-slate-300 py-1.5 pr-3 pl-9 text-sm focus:ring-0 focus:outline-none"
+                className="w-full rounded-md border border-neutral-300 py-1.5 pr-3 pl-9 text-sm focus:ring-0 focus:outline-none"
               />
             </div>
           </div>
         )}
         <div className="max-h-48 overflow-y-auto pr-2">
           {filteredOptions.length === 0 ? (
-            <div className="py-2 text-center text-sm text-slate-500">
+            <div className="py-2 text-center text-sm text-neutral-500">
               No {title.toLowerCase()} found
             </div>
           ) : (

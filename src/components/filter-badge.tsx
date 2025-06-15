@@ -15,11 +15,11 @@ export const FilterBadge: React.FC<FilterBadgeProps> = ({
   label,
   onRemove,
 }) => (
-  <div className="flex items-center rounded-full bg-slate-200 py-1 pr-1 pl-2.5 text-xs font-medium text-slate-800">
+  <div className="flex items-center rounded-full bg-neutral-200 py-1 pr-1 pl-2.5 text-xs font-medium text-neutral-800">
     <span className="capitalize">{label || value}</span>
     <button
       onClick={() => onRemove(type, value)}
-      className="ml-1 rounded-full p-0.5 hover:bg-slate-300"
+      className="ml-1 rounded-full p-0.5 hover:bg-neutral-300"
     >
       <X className="h-3.5 w-3.5" />
     </button>

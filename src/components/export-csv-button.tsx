@@ -52,7 +52,7 @@ export function ExportAsCSV<T>({
     <button
       onClick={handleExportCSV}
       disabled={disabled || data.length === 0}
-      className={`flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`flex items-center gap-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       title="Export to CSV"
     >
       <Download className="h-4 w-4" />

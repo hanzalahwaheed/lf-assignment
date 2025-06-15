@@ -26,7 +26,7 @@ export function ActiveFilters({
   if (totalActiveFilters === 0) return null;
 
   return (
-    <div className="animate-fade-in mb-6 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="animate-fade-in mb-6 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm">
       <div className="mb-2 flex items-center justify-between">
         <h4 className="text-sm font-semibold">
           Active Filters ({totalActiveFilters})
@@ -40,7 +40,7 @@ export function ActiveFilters({
       </div>
       <div className="flex flex-wrap items-center gap-2 text-sm">
         {activeFilters.category.length > 0 && (
-          <span className="text-slate-500">Category:</span>
+          <span className="text-neutral-500">Category:</span>
         )}
         {activeFilters.category.map((v) => (
           <FilterBadge
@@ -52,7 +52,7 @@ export function ActiveFilters({
         ))}
 
         {activeFilters.brand.length > 0 && (
-          <span className="ml-2 text-slate-500">Brand:</span>
+          <span className="ml-2 text-neutral-500">Brand:</span>
         )}
         {activeFilters.brand.map((v) => (
           <FilterBadge
@@ -64,7 +64,7 @@ export function ActiveFilters({
         ))}
 
         {activeFilters.priceRange && (
-          <span className="ml-2 text-slate-500">Price:</span>
+          <span className="ml-2 text-neutral-500">Price:</span>
         )}
         {activeFilters.priceRange && (
           <FilterBadge
@@ -75,7 +75,7 @@ export function ActiveFilters({
         )}
 
         {activeFilters.rating && (
-          <span className="ml-2 text-slate-500">Rating:</span>
+          <span className="ml-2 text-neutral-500">Rating:</span>
         )}
         {activeFilters.rating && (
           <FilterBadge

@@ -50,7 +50,7 @@ export const DebouncedInput = ({
       {...props}
       value={inputValue}
       onChange={handleChange}
-      className={`rounded-md border border-slate-300 px-3 py-2 text-sm transition focus:ring-0 focus:outline-none ${className}`}
+      className={`rounded-md border border-neutral-300 px-3 py-2 text-sm transition focus:ring-0 focus:outline-none ${className}`}
     />
   );
 };
