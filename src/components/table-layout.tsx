@@ -75,7 +75,7 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
               <td className="px-6 py-4 whitespace-nowrap text-neutral-600">
                 {product.brand}
               </td>
-              <td className="px-6 py-4 font-semibold whitespace-nowrap text-neutral-700">
+              <td className="px-6 py-4 font-medium whitespace-nowrap text-neutral-700">
                 ${product.price.toFixed(2)}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">

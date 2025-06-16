@@ -28,12 +28,12 @@ export function ActiveFilters({
   return (
     <div className="animate-fade-in mb-6 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm">
       <div className="mb-2 flex items-center justify-between">
-        <h4 className="text-sm font-semibold">
+        <h4 className="text-sm font-medium">
           Active Filters ({totalActiveFilters})
         </h4>
         <button
           onClick={onClearAll}
-          className="text-sm font-semibold hover:underline"
+          className="text-sm font-medium hover:underline"
         >
           Clear all
         </button>

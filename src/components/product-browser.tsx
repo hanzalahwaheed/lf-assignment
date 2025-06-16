@@ -172,7 +172,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               )
             ) : (
               <div className="rounded-lg border border-neutral-200 bg-white py-16 text-center shadow-sm">
-                <h3 className="text-xl font-semibold text-neutral-800">
+                <h3 className="text-xl font-medium text-neutral-800">
                   No Products Found
                 </h3>
                 <p className="mt-2 text-neutral-500">
@@ -184,7 +184,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               <button
                 onClick={goToPreviousPage}
                 disabled={currentPage === 1}
-                className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-semibold transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+                className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-medium transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Previous
               </button>
@@ -196,7 +196,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 disabled={
                   currentPage === totalPages || currentData.length === 0
                 }
-                className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-semibold transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+                className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-medium transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Next
               </button>
@@ -204,7 +204,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
           </main>
           <aside className="w-full flex-shrink-0 lg:w-64 xl:w-72">
             <div className="sticky top-8 rounded-lg border border-neutral-200 bg-white px-4 pt-4 shadow-sm">
-              <h3 className="text-lg font-semibold text-neutral-900">
+              <h3 className="text-lg font-medium text-neutral-900">
                 Filters
               </h3>
               <FilterSection

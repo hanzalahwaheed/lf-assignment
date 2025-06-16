@@ -45,7 +45,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
       className="group border-b border-neutral-200 py-4 last:border-b-0"
       open
     >
-      <summary className="flex cursor-pointer items-center justify-between font-semibold text-neutral-800">
+      <summary className="flex cursor-pointer items-center justify-between font-medium text-neutral-800">
         {title}
         <ChevronDown className="h-5 w-5 transform transition-transform group-open:rotate-180" />
       </summary>
