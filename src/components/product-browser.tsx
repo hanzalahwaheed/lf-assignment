@@ -12,6 +12,7 @@ import { usePagination } from "@/hooks/usePagination";
 import { useSorting } from "@/hooks/useSorting";
 import { FilterType } from "@/types/filters";
 import type { Product } from "@/types/products";
+import { PaginationControls } from "./pagination-controls";
 
 const ProductBrowser = ({ products }: { products: Product[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
