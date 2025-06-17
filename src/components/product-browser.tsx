@@ -107,29 +107,6 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 />
               </div>
               <div className="flex items-center gap-2">
-                <ExportAsCSV
-                  data={filteredAndSortedProducts}
-                  headers={[
-                    "Title",
-                    "Brand",
-                    "Category",
-                    "Price",
-                    "Rating",
-                    "Stock",
-                    "Description",
-                  ]}
-                  filename="products"
-                  getRowData={(product) => [
-                    product.title,
-                    product.brand,
-                    product.category,
-                    product.price,
-                    product.rating,
-                    product.stock,
-                    product.description,
-                  ]}
-                  disabled={filteredAndSortedProducts.length === 0}
-                />
                 <div className="flex items-center rounded-md bg-neutral-100 p-1">
                   <button
                     onClick={() => handleViewModeChange("table")}
@@ -180,28 +157,53 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               </div>
             )}
             <div className="mt-4 flex items-center justify-between text-sm text-neutral-600">
-              <button
-                onClick={goToPreviousPage}
-                disabled={currentPage === 1}
-                className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-medium transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                Previous
-              </button>
-              <span>
-                Page {currentPage} of {totalPages}
-              </span>
-              <button
-                onClick={goToNextPage}
-                disabled={
-                  currentPage === totalPages || currentData.length === 0
-                }
-                className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-medium transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                Next
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={goToPreviousPage}
+                  disabled={currentPage === 1}
+                  className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-medium transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Previous
+                </button>
+                <span>
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={goToNextPage}
+                  disabled={
+                    currentPage === totalPages || currentData.length === 0
+                  }
+                  className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-medium transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Next
+                </button>
+              </div>
+              <ExportAsCSV
+                data={filteredAndSortedProducts}
+                headers={[
+                  "Title",
+                  "Brand",
+                  "Category",
+                  "Price",
+                  "Rating",
+                  "Stock",
+                  "Description",
+                ]}
+                filename="products"
+                getRowData={(product) => [
+                  product.title,
+                  product.brand,
+                  product.category,
+                  product.price,
+                  product.rating,
+                  product.stock,
+                  product.description,
+                ]}
+                disabled={filteredAndSortedProducts.length === 0}
+              />
             </div>
           </main>
-          <aside className="w-full flex-shrink-0 lg:w-64 xl:w-72 h-screen sticky top-0">
+          <aside className="sticky top-0 h-screen w-full flex-shrink-0 lg:w-64 xl:w-72">
             <div className="h-full overflow-y-auto border border-neutral-200 bg-white px-4 pt-4 pb-6">
               <h3 className="text-lg font-medium text-neutral-900">Filters</h3>
               <FilterSection
