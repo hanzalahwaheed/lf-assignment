@@ -7,7 +7,7 @@ export interface SortConfig<T> {
   direction: SortDirection;
 }
 
-type SortConfigs<T> = Array<SortConfig<T>>;
+type SortConfigs<T> = SortConfig<T>[];
 
 interface UseSortingReturn<T> {
   sortConfig: SortConfig<T> | null;

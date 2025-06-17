@@ -17,7 +17,7 @@ interface TableLayoutProps {
   }[];
   onSort: (key: keyof Product, event: React.MouseEvent) => void;
   sortConfig: { key: string; direction: "ascending" | "descending" } | null;
-  sortConfigs?: Array<{ key: string; direction: "ascending" | "descending" }>;
+  sortConfigs?: { key: string; direction: "ascending" | "descending" }[];
 }
 
 type HeaderType = {
