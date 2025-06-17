@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import SortIcon from "@/components/ui/sort-icon";
 import { Product } from "@/types/products";
 import { Star } from "lucide-react";
@@ -116,4 +117,7 @@ const TableLayout = ({
   );
 };
 
-export default TableLayout;
+const MemoizedTableLayout = memo(TableLayout);
+MemoizedTableLayout.displayName = 'TableLayout';
+
+export default MemoizedTableLayout;

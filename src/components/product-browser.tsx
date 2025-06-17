@@ -169,27 +169,13 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               </div>
             )}
             <div className="mt-4 flex items-center justify-between text-sm text-neutral-600">
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={goToPreviousPage}
-                  disabled={currentPage === 1}
-                  className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-medium transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  Previous
-                </button>
-                <span>
-                  Page {currentPage} of {totalPages}
-                </span>
-                <button
-                  onClick={goToNextPage}
-                  disabled={
-                    currentPage === totalPages || currentData.length === 0
-                  }
-                  className="cursor-pointer rounded-md border border-neutral-300 bg-white px-4 py-2 font-medium transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  Next
-                </button>
-              </div>
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={totalPages}
+                hasData={currentData.length > 0}
+                onPrevious={goToPreviousPage}
+                onNext={goToNextPage}
+              />
               <ExportAsCSV
                 data={filteredAndSortedProducts}
                 headers={[

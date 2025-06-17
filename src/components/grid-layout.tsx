@@ -1,19 +1,9 @@
+import { memo } from 'react';
 import Image from "next/image";
 import { Star } from "lucide-react";
+import type { Product } from "@/types/products";
 
-interface GridLayoutProps {
-  data: {
-    id: number;
-    title: string;
-    category: string;
-    brand: string;
-    price: number;
-    rating: number;
-    thumbnail: string;
-  }[];
-}
-
-const GridLayout = ({ data }: GridLayoutProps) => (
+const GridLayout = ({ data }: { data: Product[] }) => (
   <div className="animate-fade-in grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
     {data.map((product) => (
       <div
@@ -54,4 +44,7 @@ const GridLayout = ({ data }: GridLayoutProps) => (
   </div>
 );
 
-export default GridLayout;
+const MemoizedGridLayout = memo(GridLayout);
+MemoizedGridLayout.displayName = 'GridLayout';
+
+export default MemoizedGridLayout;
