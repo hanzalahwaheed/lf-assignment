@@ -14,8 +14,9 @@ interface TableLayoutProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   }[];
-  onSort: (key: keyof Product) => void;
-  sortConfig: { key: string; direction: "ascending" | "descending" };
+  onSort: (key: keyof Product, event: React.MouseEvent) => void;
+  sortConfig: { key: string; direction: "ascending" | "descending" } | null;
+  sortConfigs?: Array<{ key: string; direction: "ascending" | "descending" }>;
 }
 
 type HeaderType = {
@@ -23,7 +24,12 @@ type HeaderType = {
   label: string;
 };
 
-const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
+const TableLayout = ({
+  data,
+  onSort,
+  sortConfig,
+  sortConfigs = [],
+}: TableLayoutProps) => {
   const headers: HeaderType[] = [
     { key: "title", label: "Product Name" },
     { key: "category", label: "Category" },
@@ -45,14 +51,32 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
               >
                 <div
                   className="flex cursor-pointer items-center select-none"
-                  onClick={() => onSort(key as keyof Product)}
+                  onClick={(e) => onSort(key as keyof Product, e)}
                 >
-                  {label}
-                  <SortIcon
-                    direction={
-                      sortConfig.key === key ? sortConfig.direction : null
-                    }
-                  />
+                  <span className="mr-1">{label}</span>
+                  {sortConfigs &&
+                  sortConfigs.length > 0 &&
+                  sortConfigs.some((config) => config.key === key) ? (
+                    <span className="ml-1 flex items-center">
+                      <span className="mr-1 text-xs">
+                        {sortConfigs.findIndex((config) => config.key === key) +
+                          1}
+                      </span>
+                      <SortIcon
+                        direction={
+                          sortConfigs.find((config) => config.key === key)
+                            ?.direction || "ascending"
+                        }
+                      />
+                    </span>
+                  ) : sortConfig?.key === key ? (
+                    <SortIcon direction={sortConfig.direction} />
+                  ) : (
+                    <SortIcon
+                      direction={null}
+                      className="ml-1 text-neutral-300"
+                    />
+                  )}
                 </div>
               </th>
             ))}

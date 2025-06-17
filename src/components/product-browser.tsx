@@ -15,13 +15,12 @@ import type { Product } from "@/types/products";
 
 const ProductBrowser = ({ products }: { products: Product[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  // Initialize sorting
-  const { sortConfig, handleSort, sortItems } = useSorting<Product>({
-    key: "price",
-    direction: "ascending",
-  });
+  // Initialize sorting with no default sort
+  const { sortConfig, sortConfigs, handleSort, sortItems } =
+    useSorting<Product>();
+  const [isInitialSort, setIsInitialSort] = useState(true);
 
-  type ViewMode = "grid" | "list" | "table";
+  type ViewMode = "grid" | "table";
   const [viewMode, setViewMode] = useState<ViewMode>("table");
   const {
     activeFilters,
@@ -51,8 +50,19 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
         ),
       );
     }
-    return sortItems(result);
-  }, [filteredItems, searchTerm, sortItems]);
+    // Only sort if we have a sortConfig
+    if (sortConfig) {
+      return sortItems(result);
+    }
+    return result;
+  }, [filteredItems, searchTerm, sortItems, sortConfig]);
+
+  // Handle initial sort
+  useEffect(() => {
+    if (isInitialSort && sortConfig) {
+      setIsInitialSort(false);
+    }
+  }, [sortConfig, isInitialSort]);
 
   const {
     currentPage,
@@ -144,6 +154,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   data={currentData}
                   onSort={handleSort}
                   sortConfig={sortConfig}
+                  sortConfigs={sortConfigs}
                 />
               )
             ) : (
