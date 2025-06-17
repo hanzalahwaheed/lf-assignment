@@ -64,9 +64,11 @@ export const DebouncedInput = ({
         onChange={handleChange}
         className={`px-3 py-1.5 text-sm transition focus:ring-0 focus:outline-none ${className}`}
       />
-      <button onClick={resetValue}>
-        <X className="mr-2 h-3 w-3 cursor-pointer" />
-      </button>
+      {inputValue && (
+        <button onClick={resetValue}>
+          <X className="mr-2 h-3 w-3 cursor-pointer" />
+        </button>
+      )}
     </div>
   );
 };
