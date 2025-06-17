@@ -41,17 +41,14 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
   };
 
   return (
-    <details
-      className="group border-b border-neutral-200 py-4 last:border-b-0"
-      open
-    >
-      <summary className="flex cursor-pointer items-center justify-between font-medium text-neutral-800">
+    <details className="group py-2" open>
+      <summary className="flex cursor-pointer items-center justify-between rounded-md px-1 py-2 font-medium text-neutral-800 hover:bg-neutral-100">
         {title}
-        <ChevronDown className="h-5 w-5 transform transition-transform group-open:rotate-180" />
+        <ChevronDown className="mr-2 h-5 w-5 transform transition-transform group-open:rotate-180" />
       </summary>
       <div className="space-y-2">
         {(title === "Category" || title === "Brand") && (
-          <div className="sticky top-0 z-10 my-2 bg-white">
+          <div className="relative my-2 bg-white">
             <div className="relative rounded-md border border-neutral-300">
               <Search className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
               <DebouncedInput
@@ -83,7 +80,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
               return (
                 <div
                   key={`${String(value)}-${index}`}
-                  className="my-0.5 flex items-center"
+                  className="my-0.5 px-1 flex items-center"
                 >
                   <input
                     type={type}

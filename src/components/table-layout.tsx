@@ -64,26 +64,26 @@ const TableLayout = ({ data, onSort, sortConfig }: TableLayoutProps) => {
               key={product.id}
               className="transition-colors hover:bg-neutral-50"
             >
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-3 whitespace-nowrap">
                 <div className="font-medium text-neutral-900">
                   {product.title}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-neutral-600 capitalize">
+              <td className="px-6 py-3 whitespace-nowrap text-neutral-600 capitalize">
                 {product.category.replace("-", " ")}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-neutral-600">
+              <td className="px-6 py-3 whitespace-nowrap text-neutral-600">
                 {product.brand}
               </td>
-              <td className="px-6 py-4 font-medium whitespace-nowrap text-neutral-700">
+              <td className="px-6 py-3 font-medium whitespace-nowrap text-neutral-700">
                 ${product.price.toFixed(2)}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-3 whitespace-nowrap">
                 <span className="flex items-center gap-2">
                   <Star className="h-3.5 w-3.5" /> {product.rating.toFixed(1)}
                 </span>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">{product.stock}</td>
+              <td className="px-6 py-3 whitespace-nowrap">{product.stock}</td>
             </tr>
           ))}
         </tbody>

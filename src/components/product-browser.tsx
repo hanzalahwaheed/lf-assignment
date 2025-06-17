@@ -92,11 +92,10 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
 
   return (
     <div className="min-h-screen bg-neutral-50 font-sans text-neutral-800">
-      <style>{`.animate-fade-in { animation: fade-in 0.3s ease-out; } details > summary { list-style: none; } details > summary::-webkit-details-marker { display: none; }`}</style>
-      <div className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen">
         <div className="flex flex-col gap-8 lg:flex-row">
-          <main className="min-w-0 flex-1">
-            <div className="mb-6 flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm sm:flex-row">
+          <main className="min-w-0 flex-1 py-4 pl-4">
+            <div className="mb-4 flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white p-2 sm:flex-row">
               <div className="flex w-full items-center gap-2 rounded-md border border-neutral-300 bg-white">
                 <Search className="ml-2 h-3.5 w-3.5 text-neutral-400" />
                 <DebouncedInput
@@ -180,7 +179,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 </p>
               </div>
             )}
-            <div className="mt-8 flex items-center justify-between text-sm text-neutral-600">
+            <div className="mt-4 flex items-center justify-between text-sm text-neutral-600">
               <button
                 onClick={goToPreviousPage}
                 disabled={currentPage === 1}
@@ -202,11 +201,9 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               </button>
             </div>
           </main>
-          <aside className="w-full flex-shrink-0 lg:w-64 xl:w-72">
-            <div className="sticky top-8 rounded-lg border border-neutral-200 bg-white px-4 pt-4 shadow-sm">
-              <h3 className="text-lg font-medium text-neutral-900">
-                Filters
-              </h3>
+          <aside className="w-full flex-shrink-0 lg:w-64 xl:w-72 h-screen sticky top-0">
+            <div className="h-full overflow-y-auto border border-neutral-200 bg-white px-4 pt-4 pb-6">
+              <h3 className="text-lg font-medium text-neutral-900">Filters</h3>
               <FilterSection
                 title="Category"
                 type="checkbox"
