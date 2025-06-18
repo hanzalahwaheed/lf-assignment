@@ -151,6 +151,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 options={filterOptions.category}
                 selected={activeFilters.category}
                 onChange={(val) => handleFilterChange(FilterType.CATEGORY, val)}
+                open={true}
               />
               <FilterSection
                 title="Brand"
@@ -158,6 +159,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 options={filterOptions.brand}
                 selected={activeFilters.brand}
                 onChange={(val) => handleFilterChange(FilterType.BRAND, val)}
+                open={false}
               />
               <FilterSection
                 title="Price Range"
@@ -167,6 +169,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 onChange={(val) =>
                   handleFilterChange(FilterType.PRICE_RANGE, val)
                 }
+                open={false}
               />
               <FilterSection
                 title="Rating"
@@ -174,6 +177,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                 options={filterOptions.rating}
                 selected={activeFilters.rating}
                 onChange={(val) => handleFilterChange(FilterType.RATING, val)}
+                open={false}
               />
             </div>
           </aside>

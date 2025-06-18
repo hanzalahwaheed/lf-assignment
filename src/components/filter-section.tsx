@@ -17,6 +17,7 @@ interface FilterSectionProps {
   options: (FilterOption | FilterValue)[];
   selected: FilterValue | FilterValue[] | null;
   onChange: (value: FilterValue) => void;
+  open: boolean;
 }
 
 export const FilterSection: React.FC<FilterSectionProps> = ({
@@ -25,6 +26,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
   options,
   selected,
   onChange,
+  open,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -43,7 +45,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
   };
 
   return (
-    <details className="group py-2" open>
+    <details className="group py-2" open={open}>
       <summary className="flex cursor-pointer items-center justify-between rounded-md px-1 py-2 font-medium text-neutral-800 hover:bg-neutral-100">
         {title}
         <ChevronDown className="mr-2 h-5 w-5 transform transition-transform group-open:rotate-180" />
