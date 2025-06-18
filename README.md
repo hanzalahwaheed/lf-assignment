@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dummy Product Data Table
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project showcases an interactive, feature-rich data table that fetches and displays product information from the DummyJSON API. While the DummyJSON API supports server-side filtering, sorting, and pagination, all these functionalities have been deliberately implemented on the frontend to demonstrate client-side logic handling and React proficiency.
+
+## Features
+
+### Core Requirements
+
+- **Tabular Data Display** - Products are displayed in a clean table format
+
+- **Column Sorting** - Sort by any column in ascending or descending order
+
+- **Filtering** - Filter products by category, brand, price range, and rating
+
+- **Pagination** - Navigate through products with a user-friendly pagination system
+
+### Additional Features
+
+- **Multi-column Sorting** - Hold Shift while clicking column headers to sort by multiple columns
+
+- **Search Functionality** - Full-text search across product title, category, and brand fields.
+
+- **Dual View Modes** - Seamless toggle between Table View and Grid View for improved usability—ideal for price, rating, and thumbnail-rich data.
+
+- **Column Visibility Control** - Show/hide table columns via a customizable dropdown menu.
+
+- **Active Filter Display** - Visual indicators to track and manage applied filters, with reset options.
+
+- **Export to CSV** - Export the current view (filters and sorts applied) as a CSV file—helpful for data verification or external analysis (e.g., in Excel).
+
+- **Responsive Design** - Basic mobile responsiveness integrated; further refinement planned as a potential enhancement.
+
+- **Debounced Inputs** - Built a generic, debounced input component for efficient and optimized user input handling.
+
+## Technologies Used
+
+- **Next.js**: React based framework for server-side rendering and routing
+- **TypeScript**: For type safety and better developer experience
+- **ShadCN**: UI Components like CheckBox, RadioGroup, ToolTips
+- **Lucide React**: For UI icons
+- **Tailwind CSS**: For styling and responsive design
+
+## Local Setup
+
+### Prerequisites
+
+- Node.js (version 14.x or later)
+- npm or yarn
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone [repository-url]
+
+# Navigate to project directory
+cd lf-assignment
+
+# Install dependencies
+npm install
+# or
+yarn install
+```
+
+### Running the Application
+
+```bash
+# Development mode
 npm run dev
 # or
 yarn dev
+
+# Build for production
+npm run build
 # or
-pnpm dev
+yarn build
+
+# Start production server
+npm start
 # or
-bun dev
+yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Potential Enhancements
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Paginated APIs**: Implement server-side pagination for better performance with large datasets
+- **Customizable Table Settings**: Allow users to customize table layout and save preferences
+- **Advanced Filtering**: Add date range filters and more complex filtering options
+- **Drag-and-drop Column Reordering**: Enable users to reorder columns through drag-and-drop
+- **Mobile-optimized Filters**: Improve the filter experience on mobile devices
+- **Data Visualization**: Integrate charts or graphs for key product metrics insights.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Author
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Hanzalah Waheed**
