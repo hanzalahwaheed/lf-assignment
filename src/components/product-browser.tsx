@@ -1,7 +1,11 @@
 "use client";
 import { useMemo, useState, useEffect } from "react";
 import { ListIcon, LayoutGrid, Search } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { ExportAsCSV } from "./export-csv-button";
 import { DebouncedInput } from "@/components/ui/debounced-input";
 import TableLayout from "@/components/table-layout";
@@ -137,9 +141,44 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
   return (
     <div className="min-h-screen bg-neutral-50 font-sans text-neutral-800">
       <div className="mx-auto max-w-screen">
-        <div className="flex flex-col gap-8 lg:flex-row">
-          <main className="min-w-0 flex-1 py-4 pl-4">
-            <div className="mb-4 flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white p-2 sm:flex-row">
+        <div className="flex flex-col lg:flex-row">
+          <aside className="sticky top-0 h-screen w-full flex-shrink-0 lg:w-64 xl:w-72">
+            <div className="filter-sidebar h-full overflow-y-auto border border-neutral-200 bg-white px-5 pt-4 pb-6">
+              <h3 className="text-lg font-medium text-neutral-900">Filters</h3>
+              <FilterSection
+                title="Category"
+                type="checkbox"
+                options={filterOptions.category}
+                selected={activeFilters.category}
+                onChange={(val) => handleFilterChange(FilterType.CATEGORY, val)}
+              />
+              <FilterSection
+                title="Brand"
+                type="checkbox"
+                options={filterOptions.brand}
+                selected={activeFilters.brand}
+                onChange={(val) => handleFilterChange(FilterType.BRAND, val)}
+              />
+              <FilterSection
+                title="Price Range"
+                type="radio"
+                options={filterOptions.priceRange}
+                selected={activeFilters.priceRange}
+                onChange={(val) =>
+                  handleFilterChange(FilterType.PRICE_RANGE, val)
+                }
+              />
+              <FilterSection
+                title="Rating"
+                type="radio"
+                options={filterOptions.rating}
+                selected={activeFilters.rating}
+                onChange={(val) => handleFilterChange(FilterType.RATING, val)}
+              />
+            </div>
+          </aside>
+          <main className="min-w-0 flex-1 px-3 py-4 lg:px-5">
+            <div className="mb-4 flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white px-4 py-3 sm:flex-row">
               <div className="flex w-full items-center gap-2 rounded-md border border-neutral-300 bg-white">
                 <Search className="ml-2 h-3.5 w-3.5 text-neutral-400" />
                 <DebouncedInput
@@ -257,41 +296,6 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               />
             </div>
           </main>
-          <aside className="sticky top-0 h-screen w-full flex-shrink-0 lg:w-64 xl:w-72">
-            <div className="h-full overflow-y-auto border border-neutral-200 bg-white px-4 pt-4 pb-6">
-              <h3 className="text-lg font-medium text-neutral-900">Filters</h3>
-              <FilterSection
-                title="Category"
-                type="checkbox"
-                options={filterOptions.category}
-                selected={activeFilters.category}
-                onChange={(val) => handleFilterChange(FilterType.CATEGORY, val)}
-              />
-              <FilterSection
-                title="Brand"
-                type="checkbox"
-                options={filterOptions.brand}
-                selected={activeFilters.brand}
-                onChange={(val) => handleFilterChange(FilterType.BRAND, val)}
-              />
-              <FilterSection
-                title="Price Range"
-                type="radio"
-                options={filterOptions.priceRange}
-                selected={activeFilters.priceRange}
-                onChange={(val) =>
-                  handleFilterChange(FilterType.PRICE_RANGE, val)
-                }
-              />
-              <FilterSection
-                title="Rating"
-                type="radio"
-                options={filterOptions.rating}
-                selected={activeFilters.rating}
-                onChange={(val) => handleFilterChange(FilterType.RATING, val)}
-              />
-            </div>
-          </aside>
         </div>
       </div>
     </div>
