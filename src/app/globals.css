@@ -120,3 +120,38 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-muted-foreground);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-muted-foreground) transparent;
+}
+
+/* Filter sidebar with left-aligned scrollbar */
+.filter-sidebar {
+  direction: rtl; /* Flips the scrollbar to the left side */
+  padding-left: 12px; /* Add spacing to avoid content touching scrollbar */
+}
+
+.filter-sidebar > * {
+  direction: ltr; /* Restore normal text direction for content */
+}
