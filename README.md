@@ -30,8 +30,6 @@ This project showcases an interactive, feature-rich data table that fetches and 
 
 - **Export to CSV** - Export the current view (filters and sorts applied) as a CSV file—helpful for data verification or external analysis (e.g., in Excel).
 
-- **Responsive Design** - Basic mobile responsiveness integrated; further refinement planned as a potential enhancement.
-
 - **Debounced Inputs** - Built a generic, debounced input component for efficient and optimized user input handling.
 
 ## Technologies Used
@@ -85,11 +83,12 @@ yarn start
 
 ## Potential Enhancements
 
+- **Responsive Design**: Not implemented at the moment as the focus was on desktop functionality due to time constraints.
+
 - **Paginated APIs**: Implement server-side pagination for better performance with large datasets
 - **Customizable Table Settings**: Allow users to customize table layout and save preferences
 - **Advanced Filtering**: Add date range filters and more complex filtering options
 - **Drag-and-drop Column Reordering**: Enable users to reorder columns through drag-and-drop
-- **Mobile-optimized Filters**: Improve the filter experience on mobile devices
 - **Data Visualization**: Integrate charts or graphs for key product metrics insights.
 
 ## Author
