@@ -1,24 +1,16 @@
 "use client";
 import { useMemo, useState, useEffect } from "react";
-import { ListIcon, LayoutGrid, Search } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { ExportAsCSV } from "./export-csv-button";
-import { DebouncedInput } from "@/components/ui/debounced-input";
-import TableLayout from "@/components/table-layout";
-import GridLayout from "@/components/grid-layout";
-import { FilterSection } from "@/components/filter-section";
-import ColumnSelector, { ColumnType } from "@/components/column-selector";
+import { ColumnType } from "@/components/column-selector";
 import { ActiveFilters } from "@/components/active-filters";
 import { useProductFilters } from "@/hooks/useProductFilters";
 import { usePagination } from "@/hooks/usePagination";
 import { useSorting } from "@/hooks/useSorting";
 import { FilterType } from "@/types/filters";
 import type { Product } from "@/types/products";
-import { PaginationControls } from "./pagination-controls";
+import { ProductContent } from "./product-content";
+import { ProductPaginationFooter } from "./product-pagination-footer";
+import { ProductToolbar } from "./product-toolbar";
+import { ProductSidebar } from "./product-sidebar";
 
 const ProductBrowser = ({ products }: { products: Product[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -142,163 +134,43 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
     <div className="min-h-screen bg-neutral-50 font-sans text-neutral-800">
       <div className="mx-auto max-w-screen">
         <div className="flex flex-col lg:flex-row">
-          <aside className="sticky top-0 h-screen w-full flex-shrink-0 lg:w-64 xl:w-72">
-            <div className="filter-sidebar h-full overflow-y-auto border border-neutral-200 bg-white px-5 pt-4 pb-6">
-              <h3 className="text-lg font-medium text-neutral-900">Filters</h3>
-              <FilterSection
-                title="Category"
-                type="checkbox"
-                options={filterOptions.category}
-                selected={activeFilters.category}
-                onChange={(val) => handleFilterChange(FilterType.CATEGORY, val)}
-                open={true}
-              />
-              <FilterSection
-                title="Brand"
-                type="checkbox"
-                options={filterOptions.brand}
-                selected={activeFilters.brand}
-                onChange={(val) => handleFilterChange(FilterType.BRAND, val)}
-                open={false}
-              />
-              <FilterSection
-                title="Price Range"
-                type="radio"
-                options={filterOptions.priceRange}
-                selected={activeFilters.priceRange}
-                onChange={(val) =>
-                  handleFilterChange(FilterType.PRICE_RANGE, val)
-                }
-                open={false}
-              />
-              <FilterSection
-                title="Rating"
-                type="radio"
-                options={filterOptions.rating}
-                selected={activeFilters.rating}
-                onChange={(val) => handleFilterChange(FilterType.RATING, val)}
-                open={false}
-              />
-            </div>
-          </aside>
-          <main className="min-w-0 flex-1 px-3 py-4 lg:px-5">
-            <div className="mb-4 flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white px-4 py-3 sm:flex-row">
-              <div className="flex w-full items-center gap-2 rounded-md border border-neutral-300 bg-white">
-                <Search className="ml-2 h-3.5 w-3.5 text-neutral-400" />
-                <DebouncedInput
-                  type="text"
-                  value={searchTerm}
-                  onChange={handleSearch}
-                  placeholder="Search products by category, brand or product. "
-                  className="w-full border-none bg-transparent text-sm focus:ring-0 focus:outline-none"
-                />
-              </div>
-              {viewMode === "table" && (
-                <ColumnSelector
-                  allColumns={allColumns}
-                  visibleColumns={visibleColumns}
-                  onToggleColumn={toggleColumnVisibility}
-                />
-              )}
-              <div className="flex items-center gap-2">
-                <div className="flex items-center rounded-md bg-neutral-100 p-1">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        onClick={() => handleViewModeChange("table")}
-                        className={`cursor-pointer rounded p-2 ${
-                          viewMode === "table"
-                            ? "bg-white text-neutral-900 shadow-sm"
-                            : "text-neutral-500 hover:bg-neutral-200"
-                        }`}
-                      >
-                        <ListIcon className="h-5 w-5" />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Table view</p>
-                    </TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        onClick={() => handleViewModeChange("grid")}
-                        className={`cursor-pointer rounded p-2 ${
-                          viewMode === "grid"
-                            ? "bg-white text-neutral-900 shadow-sm"
-                            : "text-neutral-500 hover:bg-neutral-200"
-                        }`}
-                      >
-                        <LayoutGrid className="h-5 w-5" />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Grid view</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              </div>
-            </div>
+          <ProductSidebar
+            filterOptions={filterOptions}
+            activeFilters={activeFilters}
+            onFilterChange={handleFilterChange}
+          />
+          <main className="flex-1 overflow-x-auto px-4 py-6">
+            <ProductToolbar
+              searchTerm={searchTerm}
+              onSearch={handleSearch}
+              viewMode={viewMode}
+              onViewModeChange={handleViewModeChange}
+              visibleColumns={visibleColumns}
+              toggleColumnVisibility={toggleColumnVisibility}
+              allColumns={allColumns}
+            />
             <ActiveFilters
               activeFilters={activeFilters}
               onClearAll={handleClearAllFilters}
               onFilterRemove={handleFilterBadgeRemove}
             />
-            {currentData.length > 0 ? (
-              viewMode === "grid" ? (
-                <GridLayout data={currentData} />
-              ) : (
-                <TableLayout
-                  data={currentData}
-                  onSort={handleSort}
-                  sortConfig={sortConfig}
-                  sortConfigs={sortConfigs}
-                  resetSort={resetSort}
-                  visibleColumns={visibleColumns}
-                />
-              )
-            ) : (
-              <div className="rounded-lg border border-neutral-200 bg-white py-16 text-center shadow-sm">
-                <h3 className="text-xl font-medium text-neutral-800">
-                  No Products Found
-                </h3>
-                <p className="mt-2 text-neutral-500">
-                  Try adjusting your filters.
-                </p>
-              </div>
-            )}
-            <div className="mt-4 flex items-center justify-between text-sm text-neutral-600">
-              <PaginationControls
-                currentPage={currentPage}
-                totalPages={totalPages}
-                hasData={currentData.length > 0}
-                onPrevious={goToPreviousPage}
-                onNext={goToNextPage}
-              />
-              <ExportAsCSV
-                data={filteredAndSortedProducts}
-                headers={[
-                  "Title",
-                  "Brand",
-                  "Category",
-                  "Price",
-                  "Rating",
-                  "Stock",
-                  "Description",
-                ]}
-                filename="products"
-                getRowData={(product) => [
-                  product.title,
-                  product.brand,
-                  product.category,
-                  product.price,
-                  product.rating,
-                  product.stock,
-                  product.description,
-                ]}
-                disabled={filteredAndSortedProducts.length === 0}
-              />
-            </div>
+            <ProductContent
+              data={currentData}
+              viewMode={viewMode}
+              onSort={handleSort}
+              sortConfig={sortConfig}
+              sortConfigs={sortConfigs}
+              resetSort={resetSort}
+              visibleColumns={visibleColumns}
+            />
+            <ProductPaginationFooter
+              currentPage={currentPage}
+              totalPages={totalPages}
+              hasData={currentData.length > 0}
+              onPrevious={goToPreviousPage}
+              onNext={goToNextPage}
+              exportData={filteredAndSortedProducts}
+            />
           </main>
         </div>
       </div>

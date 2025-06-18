@@ -3,11 +3,12 @@ import TableLayout from "@/components/table-layout";
 import GridLayout from "@/components/grid-layout";
 import type { Product } from "@/types/products";
 import { SortConfig } from "@/hooks/useSorting";
+import { MouseEvent } from "react";
 
 interface ProductContentProps {
   data: Product[];
   viewMode: "grid" | "table";
-  onSort: (key: keyof Product) => void;
+  onSort: (key: keyof Product, event: MouseEvent) => void;
   sortConfig: SortConfig<Product> | null;
   sortConfigs?: SortConfig<Product>[];
   resetSort: () => void;

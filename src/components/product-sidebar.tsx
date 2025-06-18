@@ -24,6 +24,7 @@ export const ProductSidebar = ({
           options={filterOptions.category}
           selected={activeFilters.category}
           onChange={(val) => onFilterChange(FilterType.CATEGORY, val)}
+          open={true}
         />
         <FilterSection
           title="Brand"
@@ -31,6 +32,7 @@ export const ProductSidebar = ({
           options={filterOptions.brand}
           selected={activeFilters.brand}
           onChange={(val) => onFilterChange(FilterType.BRAND, val)}
+          open={false}
         />
         <FilterSection
           title="Price Range"
@@ -38,6 +40,7 @@ export const ProductSidebar = ({
           options={filterOptions.priceRange}
           selected={activeFilters.priceRange}
           onChange={(val) => onFilterChange(FilterType.PRICE_RANGE, val)}
+          open={false}
         />
         <FilterSection
           title="Rating"
@@ -45,6 +48,7 @@ export const ProductSidebar = ({
           options={filterOptions.rating}
           selected={activeFilters.rating}
           onChange={(val) => onFilterChange(FilterType.RATING, val)}
+          open={false}
         />
       </div>
     </aside>
