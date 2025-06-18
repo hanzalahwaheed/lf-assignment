@@ -80,7 +80,7 @@ export function ActiveFilters({
         {activeFilters.rating && (
           <FilterBadge
             type={FilterType.RATING}
-            value={activeFilters.rating}
+            value={activeFilters.rating + "+"}
             onRemove={onFilterRemove}
           />
         )}
