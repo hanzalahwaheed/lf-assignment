@@ -3,6 +3,11 @@ import SortIcon from "@/components/ui/sort-icon";
 import { Product } from "@/types/products";
 import { Star, RotateCcw } from "lucide-react";
 import { SortConfig } from "@/hooks/useSorting";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface TableLayoutProps {
   data: {
@@ -49,14 +54,20 @@ const TableLayout = ({
     <div className="animate-fade-in overflow-x-auto rounded-lg border border-neutral-200 bg-white shadow-sm">
       {resetSort && sortConfigs.length > 0 && (
         <div className="flex justify-end border-b border-neutral-100 px-6 py-2">
-          <button
-            onClick={resetSort}
-            className="flex items-center text-xs font-medium text-neutral-500 transition-colors hover:text-neutral-700"
-            title="Reset sorting"
-          >
-            <RotateCcw className="mr-1 h-3.5 w-3.5" />
-            <span>Reset sort</span>
-          </button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={resetSort}
+                className="flex items-center text-xs font-medium text-neutral-500 transition-colors hover:text-neutral-700"
+              >
+                <RotateCcw className="mr-1 h-3.5 w-3.5" />
+                <span>Reset sort</span>
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Reset all sorting</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
       )}
       <table className="w-full text-sm">
@@ -69,35 +80,43 @@ const TableLayout = ({
                     key={key}
                     className="px-6 py-3 text-left text-xs font-medium tracking-wider text-neutral-500 uppercase"
                   >
-                    <div
-                      className="flex cursor-pointer items-center select-none"
-                      onClick={(e) => onSort(key as keyof Product, e)}
-                    >
-                      <span className="mr-1">{label}</span>
-                      {sortConfigs &&
-                      sortConfigs.length > 0 &&
-                      sortConfigs.some((config) => config.key === key) ? (
-                        <span className="ml-1 flex items-center">
-                          <span className="mr-1 text-xs">
-                            {sortConfigs.findIndex(
-                              (config) => config.key === key,
-                            ) + 1}
-                          </span>
-                          <SortIcon
-                            direction={
-                              sortConfigs.find((config) => config.key === key)
-                                ?.direction || "ascending"
-                            }
-                          />
-                        </span>
-                      ) : sortConfig?.key === key ? (
-                        <SortIcon direction={sortConfig.direction} />
-                      ) : (
-                        <span className="ml-1 text-neutral-300">
-                          <SortIcon direction={null} />
-                        </span>
-                      )}
-                    </div>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div
+                          className="flex cursor-pointer items-center select-none"
+                          onClick={(e) => onSort(key as keyof Product, e)}
+                        >
+                          <span className="mr-1">{label}</span>
+                          {sortConfigs &&
+                          sortConfigs.length > 0 &&
+                          sortConfigs.some((config) => config.key === key) ? (
+                            <span className="ml-1 flex items-center">
+                              <span className="mr-1 text-xs">
+                                {sortConfigs.findIndex(
+                                  (config) => config.key === key,
+                                ) + 1}
+                              </span>
+                              <SortIcon
+                                direction={
+                                  sortConfigs.find(
+                                    (config) => config.key === key,
+                                  )?.direction || "ascending"
+                                }
+                              />
+                            </span>
+                          ) : sortConfig?.key === key ? (
+                            <SortIcon direction={sortConfig.direction} />
+                          ) : (
+                            <span className="ml-1 text-neutral-300">
+                              <SortIcon direction={null} />
+                            </span>
+                          )}
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Click to sort, Shift+Click to multi-sort</p>
+                      </TooltipContent>
+                    </Tooltip>
                   </th>
                 )
               ) : (
@@ -105,35 +124,42 @@ const TableLayout = ({
                   key={key}
                   className="px-6 py-3 text-left text-xs font-medium tracking-wider text-neutral-500 uppercase"
                 >
-                  <div
-                    className="flex cursor-pointer items-center select-none"
-                    onClick={(e) => onSort(key as keyof Product, e)}
-                  >
-                    <span className="mr-1">{label}</span>
-                    {sortConfigs &&
-                    sortConfigs.length > 0 &&
-                    sortConfigs.some((config) => config.key === key) ? (
-                      <span className="ml-1 flex items-center">
-                        <span className="mr-1 text-xs">
-                          {sortConfigs.findIndex(
-                            (config) => config.key === key,
-                          ) + 1}
-                        </span>
-                        <SortIcon
-                          direction={
-                            sortConfigs.find((config) => config.key === key)
-                              ?.direction || "ascending"
-                          }
-                        />
-                      </span>
-                    ) : sortConfig?.key === key ? (
-                      <SortIcon direction={sortConfig.direction} />
-                    ) : (
-                      <span className="ml-1 text-neutral-300">
-                        <SortIcon direction={null} />
-                      </span>
-                    )}
-                  </div>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div
+                        className="flex cursor-pointer items-center select-none"
+                        onClick={(e) => onSort(key as keyof Product, e)}
+                      >
+                        <span className="mr-1">{label}</span>
+                        {sortConfigs &&
+                        sortConfigs.length > 0 &&
+                        sortConfigs.some((config) => config.key === key) ? (
+                          <span className="ml-1 flex items-center">
+                            <span className="mr-1 text-xs">
+                              {sortConfigs.findIndex(
+                                (config) => config.key === key,
+                              ) + 1}
+                            </span>
+                            <SortIcon
+                              direction={
+                                sortConfigs.find((config) => config.key === key)
+                                  ?.direction || "ascending"
+                              }
+                            />
+                          </span>
+                        ) : sortConfig?.key === key ? (
+                          <SortIcon direction={sortConfig.direction} />
+                        ) : (
+                          <span className="ml-1 text-neutral-300">
+                            <SortIcon direction={null} />
+                          </span>
+                        )}
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Click to sort, Shift+Click to multi-sort</p>
+                    </TooltipContent>
+                  </Tooltip>
                 </th>
               ),
             )}

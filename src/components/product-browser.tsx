@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState, useEffect } from "react";
 import { ListIcon, LayoutGrid, Search } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ExportAsCSV } from "./export-csv-button";
 import { DebouncedInput } from "@/components/ui/debounced-input";
 import TableLayout from "@/components/table-layout";
@@ -158,26 +159,40 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
               )}
               <div className="flex items-center gap-2">
                 <div className="flex items-center rounded-md bg-neutral-100 p-1">
-                  <button
-                    onClick={() => handleViewModeChange("table")}
-                    className={`cursor-pointer rounded p-2 ${
-                      viewMode === "table"
-                        ? "bg-white text-neutral-900 shadow-sm"
-                        : "text-neutral-500 hover:bg-neutral-200"
-                    }`}
-                  >
-                    <ListIcon className="h-5 w-5" />
-                  </button>
-                  <button
-                    onClick={() => handleViewModeChange("grid")}
-                    className={`cursor-pointer rounded p-2 ${
-                      viewMode === "grid"
-                        ? "bg-white text-neutral-900 shadow-sm"
-                        : "text-neutral-500 hover:bg-neutral-200"
-                    }`}
-                  >
-                    <LayoutGrid className="h-5 w-5" />
-                  </button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={() => handleViewModeChange("table")}
+                        className={`cursor-pointer rounded p-2 ${
+                          viewMode === "table"
+                            ? "bg-white text-neutral-900 shadow-sm"
+                            : "text-neutral-500 hover:bg-neutral-200"
+                        }`}
+                      >
+                        <ListIcon className="h-5 w-5" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Table view</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={() => handleViewModeChange("grid")}
+                        className={`cursor-pointer rounded p-2 ${
+                          viewMode === "grid"
+                            ? "bg-white text-neutral-900 shadow-sm"
+                            : "text-neutral-500 hover:bg-neutral-200"
+                        }`}
+                      >
+                        <LayoutGrid className="h-5 w-5" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Grid view</p>
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
               </div>
             </div>

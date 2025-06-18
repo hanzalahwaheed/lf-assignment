@@ -1,6 +1,7 @@
 "use client";
 
 import { Download } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface ExportAsCSVProps<T> {
   data: T[];
@@ -52,14 +53,20 @@ export function ExportAsCSV<T>({
   };
 
   return (
-    <button
-      onClick={handleExportCSV}
-      disabled={disabled || data.length === 0}
-      className={`flex cursor-pointer items-center gap-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
-      title="Export to CSV"
-    >
-      <Download className="h-4 w-4" />
-      <span>Export</span>
-    </button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          onClick={handleExportCSV}
+          disabled={disabled || data.length === 0}
+          className={`flex cursor-pointer items-center gap-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+        >
+          <Download className="h-4 w-4" />
+          <span>Export</span>
+        </button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Export data to CSV file</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
