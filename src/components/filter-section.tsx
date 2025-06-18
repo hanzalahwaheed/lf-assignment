@@ -80,7 +80,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
               return (
                 <div
                   key={`${String(value)}-${index}`}
-                  className="my-0.5 px-1 flex items-center"
+                  className="my-0.5 flex items-center px-1"
                 >
                   <input
                     type={type}

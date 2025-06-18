@@ -6,6 +6,7 @@ import { DebouncedInput } from "@/components/ui/debounced-input";
 import TableLayout from "@/components/table-layout";
 import GridLayout from "@/components/grid-layout";
 import { FilterSection } from "@/components/filter-section";
+import ColumnSelector, { ColumnType } from "@/components/column-selector";
 import { ActiveFilters } from "@/components/active-filters";
 import { useProductFilters } from "@/hooks/useProductFilters";
 import { usePagination } from "@/hooks/usePagination";
@@ -17,12 +18,43 @@ import { PaginationControls } from "./pagination-controls";
 const ProductBrowser = ({ products }: { products: Product[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
   // Initialize sorting with no default sort
-  const { sortConfig, sortConfigs, handleSort, sortItems } =
+  const { sortConfig, sortConfigs, handleSort, sortItems, resetSort } =
     useSorting<Product>();
   const [isInitialSort, setIsInitialSort] = useState(true);
 
   type ViewMode = "grid" | "table";
   const [viewMode, setViewMode] = useState<ViewMode>("table");
+  
+  // Column visibility state
+  const [visibleColumns, setVisibleColumns] = useState<string[]>([
+    "title",
+    "category",
+    "brand",
+    "price",
+    "rating",
+    "stock"
+  ]);
+  
+  const allColumns: ColumnType[] = [
+    { key: "title", label: "Product Name" },
+    { key: "category", label: "Category" },
+    { key: "brand", label: "Brand" },
+    { key: "price", label: "Price" },
+    { key: "rating", label: "Rating" },
+    { key: "stock", label: "Stock" },
+  ];
+
+  const toggleColumnVisibility = (columnKey: string) => {
+    setVisibleColumns(prev => {
+      if (prev.includes(columnKey)) {
+        // Don't allow removing the last visible column
+        if (prev.length === 1) return prev;
+        return prev.filter(key => key !== columnKey);
+      } else {
+        return [...prev, columnKey];
+      }
+    });
+  };
   const {
     activeFilters,
     filterOptions,
@@ -117,6 +149,13 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   className="w-full border-none bg-transparent text-sm focus:ring-0 focus:outline-none"
                 />
               </div>
+              {viewMode === "table" && (
+                <ColumnSelector
+                  allColumns={allColumns}
+                  visibleColumns={visibleColumns}
+                  onToggleColumn={toggleColumnVisibility}
+                />
+              )}
               <div className="flex items-center gap-2">
                 <div className="flex items-center rounded-md bg-neutral-100 p-1">
                   <button
@@ -156,6 +195,8 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
                   onSort={handleSort}
                   sortConfig={sortConfig}
                   sortConfigs={sortConfigs}
+                  resetSort={resetSort}
+                  visibleColumns={visibleColumns}
                 />
               )
             ) : (

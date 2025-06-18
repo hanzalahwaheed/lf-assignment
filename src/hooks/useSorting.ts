@@ -14,6 +14,7 @@ interface UseSortingReturn<T> {
   sortConfigs: SortConfigs<T>;
   handleSort: (key: keyof T, event: React.MouseEvent) => void;
   sortItems: (items: T[]) => T[];
+  resetSort: () => void;
 }
 
 export function useSorting<T>(
@@ -114,11 +115,16 @@ export function useSorting<T>(
     [sortConfigs],
   );
 
+  const resetSort = useCallback(() => {
+    setSortConfigs([]);
+  }, []);
+
   return {
     sortConfig: sortConfigs[0] || null,
     sortConfigs,
     handleSort,
     sortItems,
+    resetSort,
   };
 }
 
