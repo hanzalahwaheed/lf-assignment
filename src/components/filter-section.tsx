@@ -73,7 +73,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
           ) : type === "radio" ? (
             <RadioGroup
               name={title}
-              value={selected ? String(selected) : undefined}
+              value={selected !== null ? String(selected) : ""}
               onValueChange={(value) => handleChange(value)}
             >
               {filteredOptions.map((option, index) => {
