@@ -94,6 +94,12 @@ yarn start
 - **Testing**: Add a testing framework like Jest (and potentially React Testing Library) to cover core functionalities such as filtering, sorting, and pagination.
 - **Folder Structure**: For larger applications, adopt a feature-based structure, grouping each feature’s components, hooks, and utilities within its own directory to enhance modularity and scalability.
 
+## References for Inspiration
+
+- https://www.theaudiostore.in/collections/demo-on-sale
+
+- https://ui.shadcn.com/docs/components/data-table
+
 ## Author
 
 **Hanzalah Waheed**
