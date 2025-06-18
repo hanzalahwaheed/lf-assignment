@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { ChevronDown, Search } from "lucide-react";
 import DebouncedInput from "./ui/debounced-input";
 import { Checkbox } from "./ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
 interface FilterOption {
   key: string | number;
@@ -67,6 +68,39 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
             <div className="py-2 text-center text-sm text-neutral-500">
               No {title.toLowerCase()} found
             </div>
+          ) : type === "radio" ? (
+            <RadioGroup
+              name={title}
+              value={selected ? String(selected) : undefined}
+              onValueChange={(value) => handleChange(value)}
+            >
+              {filteredOptions.map((option, index) => {
+              if (!option) return null;
+
+              const value = typeof option === "object" ? option.key : option;
+              const label =
+                typeof option === "object" ? option.label : String(option);
+
+              return (
+                <div
+                  key={`${String(value)}-${index}`}
+                  className="flex items-center px-1"
+                >
+                  <RadioGroupItem
+                    id={`filter-${title}-${value}`}
+                    value={String(value)}
+                    className="cursor-pointer"
+                  />
+                  <label
+                    htmlFor={`filter-${title}-${value}`}
+                    className="ml-3 text-sm text-gray-700 capitalize"
+                  >
+                    {label}
+                  </label>
+                </div>
+              );
+            })}
+            </RadioGroup>
           ) : (
             filteredOptions.map((option, index) => {
               if (!option) return null;
@@ -83,27 +117,16 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
                   key={`${String(value)}-${index}`}
                   className="my-0.5 flex items-center px-1"
                 >
-                  {type === "checkbox" ? (
-                    <Checkbox
-                      id={`filter-${title}-${value}`}
-                      checked={!!isSelected}
-                      onCheckedChange={() => handleChange(value)}
-                    />
-                  ) : (
-                    <input
-                      type="radio"
-                      id={`filter-${title}-${value}`}
-                      name={title}
-                      checked={!!isSelected}
-                      onChange={() => handleChange(value)}
-                      className={`h-4 w-4 cursor-pointer rounded border-gray-300`}
-                    />
-                  )}
+                  <Checkbox
+                    id={`filter-${title}-${value}`}
+                    checked={!!isSelected}
+                    onCheckedChange={() => handleChange(value)}
+                  />
                   <label
                     htmlFor={`filter-${title}-${value}`}
                     className="ml-3 text-sm text-gray-700 capitalize"
                   >
-                    {type === "checkbox" ? label.replace("-", " ") : label}
+                    {label.replace("-", " ")}
                   </label>
                 </div>
               );
