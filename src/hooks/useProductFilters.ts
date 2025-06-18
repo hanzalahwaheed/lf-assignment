@@ -7,6 +7,14 @@ import {
   RATING_OPTIONS,
 } from "@/types/filters";
 
+export type ActiveFiltersType = ActiveFilters;
+export type FilterOptions = {
+  [FilterType.CATEGORY]: string[];
+  [FilterType.BRAND]: string[];
+  [FilterType.PRICE_RANGE]: typeof PRICE_RANGE_OPTIONS;
+  [FilterType.RATING]: typeof RATING_OPTIONS;
+};
+
 export const useProductFilters = (products: Product[]) => {
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
     [FilterType.CATEGORY]: [],
