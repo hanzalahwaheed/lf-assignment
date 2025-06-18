@@ -74,6 +74,7 @@ export const ColumnSelector = ({
                   id={`column-${column.key}`}
                   checked={visibleColumns.includes(column.key)}
                   onCheckedChange={() => onToggleColumn(column.key)}
+                  className="cursor-pointer"
                 />
                 <label
                   htmlFor={`column-${column.key}`}

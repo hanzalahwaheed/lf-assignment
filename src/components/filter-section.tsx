@@ -75,31 +75,31 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
               onValueChange={(value) => handleChange(value)}
             >
               {filteredOptions.map((option, index) => {
-              if (!option) return null;
+                if (!option) return null;
 
-              const value = typeof option === "object" ? option.key : option;
-              const label =
-                typeof option === "object" ? option.label : String(option);
+                const value = typeof option === "object" ? option.key : option;
+                const label =
+                  typeof option === "object" ? option.label : String(option);
 
-              return (
-                <div
-                  key={`${String(value)}-${index}`}
-                  className="flex items-center px-1"
-                >
-                  <RadioGroupItem
-                    id={`filter-${title}-${value}`}
-                    value={String(value)}
-                    className="cursor-pointer"
-                  />
-                  <label
-                    htmlFor={`filter-${title}-${value}`}
-                    className="ml-3 text-sm text-gray-700 capitalize"
+                return (
+                  <div
+                    key={`${String(value)}-${index}`}
+                    className="flex items-center px-1"
                   >
-                    {label}
-                  </label>
-                </div>
-              );
-            })}
+                    <RadioGroupItem
+                      id={`filter-${title}-${value}`}
+                      value={String(value)}
+                      className="cursor-pointer"
+                    />
+                    <label
+                      htmlFor={`filter-${title}-${value}`}
+                      className="ml-3 text-sm text-gray-700 capitalize"
+                    >
+                      {label}
+                    </label>
+                  </div>
+                );
+              })}
             </RadioGroup>
           ) : (
             filteredOptions.map((option, index) => {
@@ -121,6 +121,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
                     id={`filter-${title}-${value}`}
                     checked={!!isSelected}
                     onCheckedChange={() => handleChange(value)}
+                    className="cursor-pointer"
                   />
                   <label
                     htmlFor={`filter-${title}-${value}`}
