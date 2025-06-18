@@ -90,6 +90,9 @@ yarn start
 - **Advanced Filtering**: Add date range filters and more complex filtering options
 - **Drag-and-drop Column Reordering**: Enable users to reorder columns through drag-and-drop
 - **Data Visualization**: Integrate charts or graphs for key product metrics insights.
+- **Storybook**: Integrate Storybook to document and visually test components and their variants in isolation.
+- **Testing**: Add a testing framework like Jest (and potentially React Testing Library) to cover core functionalities such as filtering, sorting, and pagination.
+- **Folder Structure**: For larger applications, adopt a feature-based structure, grouping each feature’s components, hooks, and utilities within its own directory to enhance modularity and scalability.
 
 ## Author
 
