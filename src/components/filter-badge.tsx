@@ -16,7 +16,10 @@ export const FilterBadge: React.FC<FilterBadgeProps> = ({
   onRemove,
 }) => (
   <div className="flex items-center rounded-full bg-neutral-200 py-1 pr-1 pl-2.5 text-xs font-medium text-neutral-800">
-    <span className="capitalize">{label || value}</span>
+    <span className="capitalize">
+      {label || value}
+      {type === "rating" && "+"}
+    </span>
     <button
       onClick={() => onRemove(type, value)}
       className="ml-1 rounded-full p-0.5 hover:bg-neutral-300"
