@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { ChevronDown, Search } from "lucide-react";
 import DebouncedInput from "./ui/debounced-input";
+import { Checkbox } from "./ui/checkbox";
 
 interface FilterOption {
   key: string | number;
@@ -82,14 +83,22 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
                   key={`${String(value)}-${index}`}
                   className="my-0.5 flex items-center px-1"
                 >
-                  <input
-                    type={type}
-                    id={`filter-${title}-${value}`}
-                    name={type === "radio" ? title : undefined}
-                    checked={!!isSelected}
-                    onChange={() => handleChange(value)}
-                    className={`h-4 w-4 cursor-pointer rounded border-gray-300`}
-                  />
+                  {type === "checkbox" ? (
+                    <Checkbox
+                      id={`filter-${title}-${value}`}
+                      checked={!!isSelected}
+                      onCheckedChange={() => handleChange(value)}
+                    />
+                  ) : (
+                    <input
+                      type="radio"
+                      id={`filter-${title}-${value}`}
+                      name={title}
+                      checked={!!isSelected}
+                      onChange={() => handleChange(value)}
+                      className={`h-4 w-4 cursor-pointer rounded border-gray-300`}
+                    />
+                  )}
                   <label
                     htmlFor={`filter-${title}-${value}`}
                     className="ml-3 text-sm text-gray-700 capitalize"
