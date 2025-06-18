@@ -1,5 +1,5 @@
 import axios from "axios";
-import ProductBrowser from "@/components/product-browser";
+import ProductBrowser from "@/components/product/product-browser";
 
 const fetchProducts = async () => {
   try {

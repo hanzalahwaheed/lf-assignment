@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState, useEffect } from "react";
 import { ColumnType } from "@/components/column-selector";
-import { ActiveFilters } from "@/components/active-filters";
+import { ActiveFilters } from "@/components/filter/active-filters";
 import { useProductFilters } from "@/hooks/useProductFilters";
 import { usePagination } from "@/hooks/usePagination";
 import { useSorting } from "@/hooks/useSorting";
