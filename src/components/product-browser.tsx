@@ -24,7 +24,7 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
 
   type ViewMode = "grid" | "table";
   const [viewMode, setViewMode] = useState<ViewMode>("table");
-  
+
   // Column visibility state
   const [visibleColumns, setVisibleColumns] = useState<string[]>([
     "title",
@@ -32,9 +32,9 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
     "brand",
     "price",
     "rating",
-    "stock"
+    // "stock" // hide stock column by default
   ]);
-  
+
   const allColumns: ColumnType[] = [
     { key: "title", label: "Product Name" },
     { key: "category", label: "Category" },
@@ -45,11 +45,11 @@ const ProductBrowser = ({ products }: { products: Product[] }) => {
   ];
 
   const toggleColumnVisibility = (columnKey: string) => {
-    setVisibleColumns(prev => {
+    setVisibleColumns((prev) => {
       if (prev.includes(columnKey)) {
         // Don't allow removing the last visible column
         if (prev.length === 1) return prev;
-        return prev.filter(key => key !== columnKey);
+        return prev.filter((key) => key !== columnKey);
       } else {
         return [...prev, columnKey];
       }
