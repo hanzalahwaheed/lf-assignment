@@ -1,7 +1,7 @@
 "use client";
 import { FilterSection } from "@/components/filter/filter-section";
 import { FilterType } from "@/types/filters";
-import { FilterOptions, ActiveFiltersType } from "@/hooks/useProductFilters";
+import { FilterOptions, ActiveFiltersType } from "@/hooks/product-filters";
 
 interface ProductSidebarProps {
   filterOptions: FilterOptions;

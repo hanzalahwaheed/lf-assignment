@@ -2,9 +2,9 @@
 import { useMemo, useState, useEffect } from "react";
 import { ColumnType } from "@/components/column-selector";
 import { ActiveFilters } from "@/components/filter/active-filters";
-import { useProductFilters } from "@/hooks/useProductFilters";
-import { usePagination } from "@/hooks/usePagination";
-import { useSorting } from "@/hooks/useSorting";
+import { useProductFilters } from "@/hooks/product-filters";
+import { usePagination } from "@/hooks/pagination";
+import { useSorting } from "@/hooks/sorting";
 import { FilterType } from "@/types/filters";
 import type { Product } from "@/types/products";
 import { ProductContent } from "./product-content";
@@ -14,7 +14,6 @@ import { ProductSidebar } from "./product-sidebar";
 
 const ProductBrowser = ({ products }: { products: Product[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  // Initialize sorting with no default sort
   const { sortConfig, sortConfigs, handleSort, sortItems, resetSort } =
     useSorting<Product>();
   const [isInitialSort, setIsInitialSort] = useState(true);

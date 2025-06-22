@@ -2,7 +2,7 @@
 import TableLayout from "@/components/product/table-layout";
 import GridLayout from "@/components/product/grid-layout";
 import type { Product } from "@/types/products";
-import { SortConfig } from "@/hooks/useSorting";
+import { SortConfig } from "@/hooks/sorting";
 import { MouseEvent } from "react";
 
 interface ProductContentProps {

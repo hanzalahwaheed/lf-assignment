@@ -2,7 +2,7 @@ import { memo } from "react";
 import SortIcon from "@/components/ui/sort-icon";
 import { Product } from "@/types/products";
 import { Star, RotateCcw } from "lucide-react";
-import { SortConfig } from "@/hooks/useSorting";
+import { SortConfig } from "@/hooks/sorting";
 import {
   Tooltip,
   TooltipContent,
